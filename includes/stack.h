@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:31:56 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:17:03 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	rrotate(t_stack **root);
 // parsing
 t_stack	*parsing(const char *string);
 void	get_instruction(char *string, t_stack **root_a, t_stack **root_b);
+
+//checker
+int	is_sorted(t_stack **root);
 
 // utils
 int	equals(char	*s1, char *s2);

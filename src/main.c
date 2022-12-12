@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:58:51 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:22:18 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int main(int argc, char const **argv)
 		printf("Error.\n");
 		exit(EXIT_FAILURE);
 	}
-	*root_a = parsing(argv[1]); // protect
+	*root_a = parsing(argv[1]); // protect and check entry errors
 	*root_b = NULL;
 
 	printf("-----------a-----------\n");
@@ -81,6 +81,8 @@ int main(int argc, char const **argv)
 		print_list(root_a);
 		printf("-----------b-----------\n");
 		print_list(root_b);
+		if (is_sorted(root_a))
+			printf("SORTED !!\n");
 		free(gnl_res);
 		gnl_res = get_next_line(1);
 		if (gnl_res)

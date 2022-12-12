@@ -12,6 +12,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	main.c \
 	parsing.c \
 	utils.c \
+	checker.c \
 	get_next_line.c \
 	get_next_line_utils.c)
 
