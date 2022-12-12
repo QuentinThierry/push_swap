@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:29 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:15:18 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:05:20 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*tmp;
 
-	if (!*dest || !*src)
+	if (!*src)
 	{
 		printf("empty stack\n");
 		return ;

@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:17:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:11:56 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:05:31 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,20 +110,20 @@ static int	rrotate_op(char *string, t_stack **root_a, t_stack **root_b)
 	if (equals(string, "rra"))
 	{
 		write(1, "rra", 3);
-		rotate(root_a);
+		rrotate(root_a);
 		return (1);
 	}
 	else if (equals(string, "rrb"))
 	{
 		write(1, "rrb", 3);
-		rotate(root_b);
+		rrotate(root_b);
 		return (1);
 	}
 	else if (equals(string, "rrr"))
 	{
 		write(1, "rrr", 3);
-		rotate(root_a);
-		rotate(root_b);
+		rrotate(root_a);
+		rrotate(root_b);
 		return (1);
 	}
 	return (0);

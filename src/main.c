@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:45:35 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:58:51 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	print_list(t_stack **root)
 	t_stack	*it;
 
 	it = *root;
+	if (!it)
+	{
+		printf("EMPTY\n");
+		return ;
+	}
 	while (1)
 	{
 		printf("%d\n", it->value);
@@ -59,7 +64,12 @@ int main(int argc, char const **argv)
 		exit(EXIT_FAILURE);
 	}
 	*root_a = parsing(argv[1]); // protect
-	*root_b = parsing(argv[1]); // protect
+	*root_b = NULL;
+
+	printf("-----------a-----------\n");
+	print_list(root_a);
+	printf("-----------b-----------\n");
+	print_list(root_b);
 
 	gnl_res = get_next_line(1);
 	if (gnl_res)

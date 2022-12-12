@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 02:23:24 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:12:02 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 00:01:28 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ void	list_addtop(t_stack **root, t_stack *added)
 {
 	t_stack	*tmp;
 
+	if (!*root)
+	{
+		added->prev = added;
+		added->next = added;
+		*root = added;
+		return ;
+	}
 	tmp = (*root)->prev;
 	(*root)->prev = added;
 	added->next = *root;
