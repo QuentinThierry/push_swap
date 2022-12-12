@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 19:25:08 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 22:52:47 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,18 @@ void	list_insert_before(t_stack **at_elem, t_stack *added);
 t_stack	*list_delfirst(t_stack **root);
 void	list_addtop(t_stack **root, t_stack *added);
 
-//internal_instructions
+// internal_instructions
 void	swap(t_stack **root);
-void	push_a(t_stack **root_a, t_stack **root_b);
+void	push(t_stack **dest, t_stack **src);
+void	rotate(t_stack **root);
+void	rrotate(t_stack **root);
 
+// parsing
+t_stack	*parsing(const char *string);
+void	get_instruction(char *string, t_stack **root_a, t_stack **root_b);
+
+// utils
+int	equals(char	*s1, char *s2);
 
 // ft_split
 char	**ft_split(const char *string, char c);

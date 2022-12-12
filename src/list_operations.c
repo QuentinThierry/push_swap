@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 02:23:24 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 19:24:58 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 22:27:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	list_insert_before(t_stack **at_elem, t_stack *added)
 	added->next = *at_elem;
 	added->prev = tmp;
 	tmp->next = added;
-	// *at_elem = tmp;
 }
 
 void	list_addtop(t_stack **root, t_stack *added)
