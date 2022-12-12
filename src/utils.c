@@ -6,11 +6,11 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 22:34:41 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:12:00 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/stack.h"
 
 int	equals(char	*s1, char *s2)
 {

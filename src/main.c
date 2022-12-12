@@ -6,11 +6,12 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 23:04:45 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:45:35 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/stack.h"
+#include "../includes/get_next_line.h"
 
 void	print_list(t_stack **root)
 {
@@ -26,11 +27,28 @@ void	print_list(t_stack **root)
 	}
 }
 
+void	free_stack(t_stack **root)
+{
+	t_stack	*it;
+	t_stack	*tmp;
+
+	it = *root;
+	while (1)
+	{
+		tmp = it;
+		it = it->next;
+		free(tmp);
+		if (it == *root)
+			break;
+	}
+	//free(*root);
+}
+
 int main(int argc, char const **argv)
 {
 	t_stack	**root_a;
 	t_stack	**root_b;
-	t_stack	*it;
+	char	*gnl_res;
 
 	root_a = malloc(sizeof(t_stack *)); // protect
 	root_b = malloc(sizeof(t_stack *)); // protect
@@ -43,12 +61,25 @@ int main(int argc, char const **argv)
 	*root_a = parsing(argv[1]); // protect
 	*root_b = parsing(argv[1]); // protect
 
-	get_instruction("rb", root_a, root_b);
-	it = *root_a;
-	printf("-----------a-----------\n");
-	print_list(root_a);
-	printf("-----------b-----------\n");
-	print_list(root_b);
+	gnl_res = get_next_line(1);
+	if (gnl_res)
+		gnl_res[strlen(gnl_res) - 1] = 0;
+	while (gnl_res)
+	{
+		get_instruction(gnl_res, root_a, root_b);
+		printf("-----------a-----------\n");
+		print_list(root_a);
+		printf("-----------b-----------\n");
+		print_list(root_b);
+		free(gnl_res);
+		gnl_res = get_next_line(1);
+		if (gnl_res)
+			gnl_res[strlen(gnl_res) - 1] = 0;
+	}
 
+	free_stack(root_a);
+	free_stack(root_b);
+	free(root_a);
+	free(root_b);
 	return (0);
 }

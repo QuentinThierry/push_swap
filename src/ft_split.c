@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:28:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 14:47:42 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:14:51 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/stack.h"
 
 static void	free_all(char **string)
 {
@@ -43,7 +43,7 @@ static int	count_words(const char *string, char c)
 	return (res);
 }
 
-static char	*get_word(const char **string, char c, int index)
+static char	*get_word(const char **string, char c)
 {
 	char	*res;
 	int		size;
@@ -83,7 +83,7 @@ char	**ft_split(const char *string, char c)
 	i = 0;
 	while (i < nb_words)
 	{
-		res[i] = get_word(&string, c, i);
+		res[i] = get_word(&string, c);
 		if (!res[i])
 			return (free_all(res), NULL);
 		i++;

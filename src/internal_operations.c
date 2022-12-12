@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   internal_instructions.c                            :+:      :+:    :+:   */
+/*   internal_operations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:29 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/12 22:16:47 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:15:18 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "../includes/stack.h"
 
 void	swap(t_stack	**root)
 {
@@ -27,7 +27,6 @@ void	swap(t_stack	**root)
 
 void	push(t_stack **dest, t_stack **src)
 {
-	int	tmp_val;
 	t_stack	*tmp;
 
 	if (!*dest || !*src)
