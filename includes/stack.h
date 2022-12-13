@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 00:17:03 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:19:13 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	rotate(t_stack **root);
 void	rrotate(t_stack **root);
 
 // parsing
-t_stack	*parsing(const char *string);
+t_stack	*parsing_one(const char *string);
+t_stack	*parsing_mult(int argc, char **argv);
+
+// parser operations
 void	get_instruction(char *string, t_stack **root_a, t_stack **root_b);
 
 //checker
@@ -47,6 +50,9 @@ int	is_sorted(t_stack **root);
 
 // utils
 int	equals(char	*s1, char *s2);
+int	ft_isdigit(int c);
+int	ft_atoi(const char *nptr);
+size_t	ft_strlen(const char *s);
 
 // ft_split
 char	**ft_split(const char *string, char c);

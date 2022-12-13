@@ -3,139 +3,118 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:17:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 00:05:31 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:44:45 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-t_stack	*parsing(const char *string)
+static t_stack	*list_from_str(char *string)
 {
-	t_stack	*root;
-	t_stack	*stack;
+	int		value;
+	int		i;
 	t_stack	*tmp;
-	char	**args;
-	char	**cpy;
+
+	value = ft_atoi(string);
+	i = 0;
+	if (value == -2147483648)
+	{
+		if (string[i] != '-')
+			return (NULL);
+		i++;
+		while (string[i] == '0')
+			i++;
+		if (!equals(string + i, "2147483648"))
+			return (NULL);
+	}
+	tmp = list_new(value);
+	return (tmp);
+}
+
+static void	free_stack(t_stack	*root)
+{
+	t_stack	*tmp;
+	t_stack	*last;
+
+	if (!root)
+		return ;
+	last = root->prev;
+	while (root != last)
+	{
+		tmp = root;
+		root = root->next;
+		free(tmp);
+	}
+	free(last);
+}
+
+static void	free_split(char **args)
+{
+	size_t		i;
+
+	if (!args)
+		return ;
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+}
+
+t_stack	*parsing_one(const char *string)
+{
+	t_stack		*root;
+	t_stack		*stack;
+	t_stack		*tmp;
+	size_t		i;
+	char		**args;
 
 	root = NULL;
 	stack = NULL;
 	args = ft_split(string, ' ');
-	cpy = args;
-	while (*args)
+	if (!args)
+		return (NULL);
+	i = 0;
+	while (args[i])
 	{
-		tmp = list_new(atoi(*args)); //
+		tmp = list_from_str(args[i]);
 		if (!tmp)
-			return (NULL);
+			return (free_stack(root), free_split(args), NULL);
 		list_insert_after(&stack, tmp);
 		if (root == NULL)
 			root = stack;
 		stack = stack->next;
-		args++;
-		free(*(args - 1));
+		i++;
 	}
-	free(cpy);
+	free_split(args);
 	return (root);
 }
 
-static int	swap_op(char *string, t_stack **root_a, t_stack **root_b)
+t_stack	*parsing_mult(int argc, char **argv)
 {
-	if (equals(string, "sa"))
-	{
-		write(1, "sa", 2);
-		swap(root_a);
-		return (1);
-	}
-	else if (equals(string, "sb"))
-	{
-		write(1, "sb", 2);
-		swap(root_b);
-		return (1);
-	}
-	else if (equals(string, "ss"))
-	{
-		write(1, "ss", 2);
-		swap(root_a);
-		swap(root_b);
-		return (1);
-	}
-	return (0);
-}
+	t_stack	*root;
+	t_stack	*stack;
+	t_stack	*tmp;
+	int		i;
 
-static int	push_op(char *string, t_stack **root_a, t_stack **root_b)
-{
-	if (equals(string, "pa"))
+	root = NULL;
+	stack = NULL;
+	i = 1;
+	while (i < argc)
 	{
-		write(1, "pa", 2);
-		push(root_a, root_b);
-		return (1);
+		tmp = list_from_str(argv[i]);
+		if (!tmp)
+			return (free_stack(root), NULL);
+		list_insert_after(&stack, tmp);
+		if (root == NULL)
+			root = stack;
+		stack = stack->next;
+		i++;
 	}
-	else if (equals(string, "pb"))
-	{
-		write(1, "pb", 2);
-		push(root_b, root_a);
-		return (1);
-	}
-	return (0);
-}
-
-static int	rotate_op(char *string, t_stack **root_a, t_stack **root_b)
-{
-	if (equals(string, "ra"))
-	{
-		write(1, "ra", 2);
-		rotate(root_a);
-		return (1);
-	}
-	else if (equals(string, "rb"))
-	{
-		write(1, "rb", 2);
-		rotate(root_b);
-		return (1);
-	}
-	else if (equals(string, "rr"))
-	{
-		write(1, "rr", 2);
-		rotate(root_a);
-		rotate(root_b);
-		return (1);
-	}
-	return (0);
-}
-
-static int	rrotate_op(char *string, t_stack **root_a, t_stack **root_b)
-{
-	if (equals(string, "rra"))
-	{
-		write(1, "rra", 3);
-		rrotate(root_a);
-		return (1);
-	}
-	else if (equals(string, "rrb"))
-	{
-		write(1, "rrb", 3);
-		rrotate(root_b);
-		return (1);
-	}
-	else if (equals(string, "rrr"))
-	{
-		write(1, "rrr", 3);
-		rrotate(root_a);
-		rrotate(root_b);
-		return (1);
-	}
-	return (0);
-}
-
-void	get_instruction(char *string, t_stack **root_a, t_stack **root_b)
-{
-	if (swap_op(string, root_a, root_b))
-		return ;
-	if (push_op(string, root_a, root_b))
-		return ;
-	if (rotate_op(string, root_a, root_b))
-		return ;
-	rrotate_op(string, root_a, root_b);
+	return (root);
 }

@@ -1,5 +1,5 @@
 NAME = push_swap
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -g3 #-Werror
 DEPS = $(INCLUDES)stack.h Makefile
 INCLUDES = includes/
 SRC_DIR = src/
@@ -13,6 +13,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	parsing.c \
 	utils.c \
 	checker.c \
+	parser_operations.c \
 	get_next_line.c \
 	get_next_line_utils.c)
 

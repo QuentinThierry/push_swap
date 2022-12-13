@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 00:22:18 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 18:23:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	free_stack(t_stack **root)
 	t_stack	*it;
 	t_stack	*tmp;
 
+	if (!*root)
+		return ;
 	it = *root;
 	while (1)
 	{
@@ -46,7 +48,6 @@ void	free_stack(t_stack **root)
 		if (it == *root)
 			break;
 	}
-	//free(*root);
 }
 
 int main(int argc, char const **argv)
@@ -60,11 +61,15 @@ int main(int argc, char const **argv)
 
 	if (argc < 2)
 	{
-		printf("Error.\n");
+		printf("No args\n");
 		exit(EXIT_FAILURE);
 	}
-	*root_a = parsing(argv[1]); // protect and check entry errors
+	if (argc == 2)
+		*root_a = parsing_one(argv[1]);
+	else
+		*root_a = parsing_mult(argc, (char **)argv);
 	*root_b = NULL;
+	// *root_a = parsing(argv[1]); // protect and check entry errors
 
 	printf("-----------a-----------\n");
 	print_list(root_a);
@@ -74,6 +79,7 @@ int main(int argc, char const **argv)
 	gnl_res = get_next_line(1);
 	if (gnl_res)
 		gnl_res[strlen(gnl_res) - 1] = 0;
+
 	while (gnl_res)
 	{
 		get_instruction(gnl_res, root_a, root_b);
@@ -81,13 +87,14 @@ int main(int argc, char const **argv)
 		print_list(root_a);
 		printf("-----------b-----------\n");
 		print_list(root_b);
-		if (is_sorted(root_a))
-			printf("SORTED !!\n");
+
 		free(gnl_res);
 		gnl_res = get_next_line(1);
 		if (gnl_res)
-			gnl_res[strlen(gnl_res) - 1] = 0;
+			gnl_res[ft_strlen(gnl_res) - 1] = 0;
 	}
+	if (is_sorted(root_a) && !*root_b)
+		printf("SORTED !!\n");
 
 	free_stack(root_a);
 	free_stack(root_b);
