@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 18:23:27 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/13 19:02:54 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,32 @@ int main(int argc, char const **argv)
 	*root_b = NULL;
 	// *root_a = parsing(argv[1]); // protect and check entry errors
 
-	printf("-----------a-----------\n");
-	print_list(root_a);
-	printf("-----------b-----------\n");
-	print_list(root_b);
+	// printf("-----------a-----------\n");
+	// print_list(root_a);
+	// printf("-----------b-----------\n");
+	// print_list(root_b);
 
-	gnl_res = get_next_line(1);
+	gnl_res = get_next_line(0);
 	if (gnl_res)
 		gnl_res[strlen(gnl_res) - 1] = 0;
 
 	while (gnl_res)
 	{
 		get_instruction(gnl_res, root_a, root_b);
-		printf("-----------a-----------\n");
-		print_list(root_a);
-		printf("-----------b-----------\n");
-		print_list(root_b);
+		// printf("-----------a-----------\n");
+		// print_list(root_a);
+		// printf("-----------b-----------\n");
+		// print_list(root_b);
 
 		free(gnl_res);
-		gnl_res = get_next_line(1);
+		gnl_res = get_next_line(0);
 		if (gnl_res)
 			gnl_res[ft_strlen(gnl_res) - 1] = 0;
 	}
 	if (is_sorted(root_a) && !*root_b)
-		printf("SORTED !!\n");
+		printf("OK\n");
+	else
+		printf("KO\n");
 
 	free_stack(root_a);
 	free_stack(root_b);
