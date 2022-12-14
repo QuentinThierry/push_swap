@@ -33,11 +33,12 @@ SRC_C = $(addprefix $(SRC_DIR), \
 	get_next_line_utils.c \
 	checker_main.c)
 
-OBJ_P = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC_P))
-OBJ_C = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC_C))
+OBJ_P = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_P))
+OBJ_C = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_C))
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(DEPS)
 	@if [ ! -d "$(OBJ_DIR)" ]; then mkdir $(OBJ_DIR); fi
+	@if [ ! -d "$(dir $@)" ]; then mkdir $(dir $@); fi
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ_P) $(DEPS)
