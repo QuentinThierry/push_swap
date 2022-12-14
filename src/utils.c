@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 19:08:42 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 02:13:36 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,27 @@ size_t	ft_strlen(const char *s)
 	while (*s)
 		s++;
 	return (s - cpy);
+}
+
+int	has_duplicated_elem(char **string)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (string[i])
+	{
+		j = i + 1;
+		while (string[j])
+		{
+			if (equals(string[j], string[i]))
+			{
+				write(1, "Error\n", 6);
+				return (1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

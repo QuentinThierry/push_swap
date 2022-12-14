@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 02:23:24 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 00:01:28 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 02:14:54 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	list_addtop(t_stack **root, t_stack *added)
 	*root = added;
 }
 
-t_stack	*list_delfirst(t_stack **root)
+t_stack	*list_pop(t_stack **root)
 {
 	t_stack	*tmp;
 	t_stack	*previous;
@@ -85,10 +85,8 @@ t_stack	*list_delfirst(t_stack **root)
 	tmp = *root;
 	previous = (*root)->prev;
 	next = (*root)->next;
-
 	previous->next = next;
 	next->prev = previous;
-
 	*root = next;
 	return (tmp);
 }

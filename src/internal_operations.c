@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:29 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 00:05:20 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 00:58:28 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push(t_stack **dest, t_stack **src)
 		printf("empty stack\n");
 		return ;
 	}
-	tmp = list_delfirst(src);
+	tmp = list_pop(src);
 	list_addtop(dest, tmp);
 	if (tmp == *src)
 		*src = NULL;

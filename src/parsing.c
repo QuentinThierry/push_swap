@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:17:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 18:44:45 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 02:12:55 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,6 @@ static t_stack	*list_from_str(char *string)
 	}
 	tmp = list_new(value);
 	return (tmp);
-}
-
-static void	free_stack(t_stack	*root)
-{
-	t_stack	*tmp;
-	t_stack	*last;
-
-	if (!root)
-		return ;
-	last = root->prev;
-	while (root != last)
-	{
-		tmp = root;
-		root = root->next;
-		free(tmp);
-	}
-	free(last);
 }
 
 static void	free_split(char **args)
@@ -77,8 +60,8 @@ t_stack	*parsing_one(const char *string)
 	root = NULL;
 	stack = NULL;
 	args = ft_split(string, ' ');
-	if (!args)
-		return (NULL);
+	if (!args || has_duplicated_elem(args))
+		return (free_split(args), NULL);
 	i = 0;
 	while (args[i])
 	{
@@ -104,6 +87,8 @@ t_stack	*parsing_mult(int argc, char **argv)
 
 	root = NULL;
 	stack = NULL;
+	if (has_duplicated_elem(argv))
+		return (NULL);
 	i = 1;
 	while (i < argc)
 	{

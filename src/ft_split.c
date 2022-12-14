@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:28:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/13 18:18:52 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 02:12:47 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	free_all(char **string)
 
 static int	count_words(const char *string, char c)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	while (*string)
@@ -35,7 +35,7 @@ static int	count_words(const char *string, char c)
 		while (*string == c)
 			string++;
 		if (!*string)
-			break;
+			break ;
 		while (*string && *string != c)
 			string++;
 		res++;
