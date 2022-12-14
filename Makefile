@@ -15,7 +15,7 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	parsing.c \
 	utils.c \
 	checker.c \
-	parser_operations.c \
+	instructions.c \
 	get_next_line.c \
 	get_next_line_utils.c \
 	main.c)
@@ -28,7 +28,7 @@ SRC_C = $(addprefix $(SRC_DIR), \
 	parsing.c \
 	utils.c \
 	checker.c \
-	parser_operations.c \
+	instructions.c \
 	get_next_line.c \
 	get_next_line_utils.c \
 	checker_main.c)
