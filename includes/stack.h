@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/14 02:16:08 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:34:54 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	list_addtop(t_stack **root, t_stack *added);
 
 // list_operations2
 void	free_stack(t_stack	*root);
-void	print_list(t_stack **root);
+void	print_stack(t_stack **root);
+void	init_stack(int argc, char **argv, t_stack ***root_a, t_stack ***root_b);
 
 // internal_instructions
 void	swap(t_stack **root);

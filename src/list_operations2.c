@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:48 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/14 02:13:25 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:34:09 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_stack(t_stack	*root)
 	free(last);
 }
 
-void	print_list(t_stack **root)
+void	print_stack(t_stack **root)
 {
 	t_stack	*it;
 
@@ -46,4 +46,21 @@ void	print_list(t_stack **root)
 		if (it == *root)
 			break ;
 	}
+}
+
+void	init_stack(int argc, char **argv, t_stack ***root_a, t_stack ***root_b)
+{
+	if (argc < 2)
+		exit(EXIT_FAILURE);
+	*root_a = malloc(sizeof(t_stack *));
+	if (!*root_a)
+		return (exit(EXIT_FAILURE));
+	*root_b = malloc(sizeof(t_stack *));
+	if (!*root_b)
+		return (free(*root_a), exit(EXIT_FAILURE));
+	if (argc == 2)
+		**root_a = parsing_one(argv[1]);
+	else
+		**root_a = parsing_mult(argc, argv);
+	**root_b = NULL;
 }
