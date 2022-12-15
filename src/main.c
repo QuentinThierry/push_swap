@@ -6,25 +6,60 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/14 17:34:00 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/15 02:22:54 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
+static void	print_all(t_piles *p)
+{
+	printf("---------a---------\n");
+	print_stack(p->pa);
+	printf("---------b---------\n");
+	print_stack(p->pb);
+}
+
 int	main(int argc, char const **argv)
 {
-	t_stack	**root_a;
-	t_stack	**root_b;
+	t_piles	p;
+	t_stack	*pivot;
+	t_stack	*it;
 
-	init_stack(argc, (char **)argv, &root_a, &root_b);
+	int	testPetit[10] = {0};
+	int	testGrand[10] = {0};
+	int	i = 0;
+	int	j = 0;
 
-	printf("---------a---------\n");
-	print_stack(root_a);
-	printf("---------b---------\n");
-	print_stack(root_b);
+	init_stack(argc, (char **)argv, &p);
+	p.pa_size = list_count(p.pa);
 
-	free(root_a);
-	free(root_b);
+	printf("Pa : %d elements. \n", p.pa_size);
+	print_all(&p);
+
+	pivot = find_median(p.pa, p.pa_size);
+
+	if (!*p.pa)
+		return (0);
+	it = *p.pa;
+	while (1)
+	{
+		printf("%d < %d\n", it->value, pivot->value);
+
+		if (it->value < pivot->value)
+			testPetit[i++] = it->value;
+		else if (it->value > pivot->value)
+			testGrand[j++] = it->value;
+		it = it->next;
+		if (it == *p.pa)
+			break ;
+	}
+	i = 0;
+	while (i < 9)
+		printf("%d | %d\n", testPetit[i], testGrand[i++]);
+	free_stack(*p.pa);
+	free_stack(*p.pb);
+	free(p.pa);
+	free(p.pb);
 	return (0);
 }

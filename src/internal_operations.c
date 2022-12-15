@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:29 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/14 00:58:28 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/15 01:52:58 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	swap(t_stack	**root)
 	t_stack	*second;
 	int		tmp_val;
 
+	if (!*root)
+		return ;
 	first = *root;
 	second = first->next;
 	tmp_val = first->value;
@@ -35,17 +37,21 @@ void	push(t_stack **dest, t_stack **src)
 		return ;
 	}
 	tmp = list_pop(src);
-	list_addtop(dest, tmp);
+	list_push(dest, tmp);
 	if (tmp == *src)
 		*src = NULL;
 }
 
 void	rotate(t_stack **root)
 {
+	if (!*root)
+		return ;
 	*root = (*root)->next;
 }
 
 void	rrotate(t_stack **root)
 {
+	if (!*root)
+		return ;
 	*root = (*root)->prev;
 }

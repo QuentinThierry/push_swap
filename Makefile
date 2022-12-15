@@ -18,6 +18,7 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	instructions.c \
 	get_next_line.c \
 	get_next_line_utils.c \
+	algo_operations.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \
