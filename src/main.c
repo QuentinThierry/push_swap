@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/15 02:22:54 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/15 18:47:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(int argc, char const **argv)
 	t_stack	*pivot;
 	t_stack	*it;
 
-	int	testPetit[10] = {0};
-	int	testGrand[10] = {0};
+	int	testPetit[1000] = {0};
+	int	testGrand[1000] = {0};
 	int	i = 0;
 	int	j = 0;
 
@@ -37,7 +37,7 @@ int	main(int argc, char const **argv)
 	printf("Pa : %d elements. \n", p.pa_size);
 	print_all(&p);
 
-	pivot = find_median(p.pa, p.pa_size);
+	pivot = find_average(p.pa, p.pa_size);
 
 	if (!*p.pa)
 		return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/15 01:55:12 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:49:46 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ size_t	ft_strlen(const char *s);
 int		has_duplicated_elem(char **string);
 
 // algo_operations
-t_stack	*find_median(t_stack **root, int size);
+t_stack	*find_average(t_stack **root, int size);
 
 // ft_split
 char	**ft_split(const char *string, char c);

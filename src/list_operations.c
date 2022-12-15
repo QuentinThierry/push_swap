@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 02:23:24 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/15 02:14:47 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:46:15 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ t_stack	*list_pop(t_stack **root)
 	t_stack	*previous;
 	t_stack	*next;
 
+	if (!*root)
+		return (NULL);
 	tmp = *root;
 	previous = (*root)->prev;
 	next = (*root)->next;

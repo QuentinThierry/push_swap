@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   internal_operations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:29 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/15 01:52:58 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:46:40 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ void	push(t_stack **dest, t_stack **src)
 {
 	t_stack	*tmp;
 
-	if (!*src)
-	{
-		printf("empty stack\n");
-		return ;
-	}
 	tmp = list_pop(src);
+	if (!tmp)
+		return ;
 	list_push(dest, tmp);
 	if (tmp == *src)
 		*src = NULL;
