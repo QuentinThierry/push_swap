@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/15 18:47:27 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/16 16:43:38 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	main(int argc, char const **argv)
 	printf("Pa : %d elements. \n", p.pa_size);
 	print_all(&p);
 
-	pivot = find_average(p.pa, p.pa_size);
+	pivot = find_pivot(p.pa, p.pa_size);
 
 	if (!*p.pa)
 		return (0);
 	it = *p.pa;
-	while (1)
+	while (it != NULL)
 	{
 		printf("%d < %d\n", it->value, pivot->value);
 
@@ -56,7 +56,10 @@ int	main(int argc, char const **argv)
 	}
 	i = 0;
 	while (i < 9)
-		printf("%d | %d\n", testPetit[i], testGrand[i++]);
+	{
+		printf("%d | %d\n", testPetit[i], testGrand[i]);
+		i++;
+	}
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);

@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo_operations.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
+/*   Updated: 2022/12/16 16:42:31 by qthierry         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/stack.h"
+
+static void	int_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+static int partition(int *tab, int left, int right)
+{
+	int	pivot;
+	int	i;
+	int	j;
+
+	pivot = tab[right];
+	i = left - 1;
+	j = left;
+	while (j < right)
+	{
+		if (tab[j] <= pivot)
+		{
+			i++;
+			int_swap(&tab[i], &tab[j]);
+		}
+		j++;
+	}
+	int_swap(&tab[i + 1], &tab[right]);
+
+	return (i + 1);
+}
+
+static void	*quick_sort(int *tab, int left, int right)
+{
+	int	pos;
+
+	if (left < right)
+	{
+		pos = partition(tab, left, right);
+		quick_sort(tab, left, pos - 1);
+		quick_sort(tab, pos + 1, right);
+	}
+}
+
+static t_stack	*find_value(t_stack **root, int value)
+{
+	t_stack	*it;
+
+	it = *root;
+	while (it->value != value)
+	{
+		it = it->next;
+		if (it == *root)
+			break ;
+	}
+	return (it);
+}
+
+t_stack	*find_pivot(t_stack **root, int size)
+{
+	int		*to_sort;
+	int		i;
+	t_stack	*it;
+
+	to_sort = malloc(sizeof(int) * size);
+	if (!to_sort)
+		return (NULL);
+	it = *root;
+	i = 0;
+	while (i < size)
+	{
+		to_sort[i] = it->value;
+		it = it->next;
+		i++;
+	}
+	quick_sort(to_sort, 0, size - 1);
+	it = find_value(root, to_sort[size / 2]);
+	printf("END VALUE : %d\n", it->value);
+	return (it);
+}
