@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_operations.c                                  :+:      :+:    :+:   */
+/*   pivot_finder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/16 16:42:31 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:21:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int partition(int *tab, int left, int right)
 	return (i + 1);
 }
 
-static void	*quick_sort(int *tab, int left, int right)
+static void	quick_sort(int *tab, int left, int right)
 {
 	int	pos;
 

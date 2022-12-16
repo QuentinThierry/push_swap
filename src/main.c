@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/16 16:43:38 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:45:14 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	main(int argc, char const **argv)
 	t_stack	*pivot;
 	t_stack	*it;
 
-	int	testPetit[1000] = {0};
-	int	testGrand[1000] = {0};
 	int	i = 0;
 	int	j = 0;
 
@@ -38,28 +36,14 @@ int	main(int argc, char const **argv)
 	print_all(&p);
 
 	pivot = find_pivot(p.pa, p.pa_size);
-
+	split_stack_pivot(p.pb, p.pa, pivot);
 	if (!*p.pa)
 		return (0);
 	it = *p.pa;
-	while (it != NULL)
-	{
-		printf("%d < %d\n", it->value, pivot->value);
-
-		if (it->value < pivot->value)
-			testPetit[i++] = it->value;
-		else if (it->value > pivot->value)
-			testGrand[j++] = it->value;
-		it = it->next;
-		if (it == *p.pa)
-			break ;
-	}
 	i = 0;
-	while (i < 9)
-	{
-		printf("%d | %d\n", testPetit[i], testGrand[i]);
-		i++;
-	}
+
+	print_all(&p);
+
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);

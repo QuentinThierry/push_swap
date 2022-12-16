@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/16 16:42:31 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/16 18:29:30 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ size_t	ft_strlen(const char *s);
 int		has_duplicated_elem(char **string);
 
 // algo_operations
+void	split_stack_pivot(t_stack **dest, t_stack **src, t_stack *pivot);
+
+// pivot_finder
 t_stack	*find_pivot(t_stack **root, int size);
 
 // ft_split
