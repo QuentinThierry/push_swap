@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/16 18:29:30 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:35:31 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,15 @@ int		ft_atoi(const char *nptr);
 size_t	ft_strlen(const char *s);
 int		has_duplicated_elem(char **string);
 
+//utils2
+char	*mini_join(char *str, char letter);
+void	get_double_instruction(char *str1, char *str2, t_piles *p, int show);
+
 // algo_operations
-void	split_stack_pivot(t_stack **dest, t_stack **src, t_stack *pivot);
+void	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot);
+
+//sort_at_3
+void	sort_at_3(t_piles *p, t_stack **root);
 
 // pivot_finder
 t_stack	*find_pivot(t_stack **root, int size);

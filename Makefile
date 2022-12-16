@@ -14,12 +14,14 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	list_operations2.c \
 	parsing.c \
 	utils.c \
+	utils2.c \
 	checker.c \
-	instructions.c \
+	parsing_instructions.c \
 	get_next_line.c \
 	get_next_line_utils.c \
 	pivot_finder.c \
 	algo_operations.c \
+	sort_at_3.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \

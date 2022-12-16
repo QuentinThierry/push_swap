@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/16 18:45:14 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/17 00:12:14 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	main(int argc, char const **argv)
 {
 	t_piles	p;
 	t_stack	*pivot;
-	t_stack	*it;
+	//t_stack	*it;
 
-	int	i = 0;
-	int	j = 0;
+	//int	i = 0;
+	//int	j = 0;
 
 	init_stack(argc, (char **)argv, &p);
 	p.pa_size = list_count(p.pa);
@@ -36,11 +36,18 @@ int	main(int argc, char const **argv)
 	print_all(&p);
 
 	pivot = find_pivot(p.pa, p.pa_size);
-	split_stack_pivot(p.pb, p.pa, pivot);
+	split_stack_pivot(&p, p.pa, pivot);
+
+	print_all(&p);
+
+	sort_at_3(&p, p.pb);
+	//p.pb_size = list_count(p.pb);
+	//pivot = find_pivot(p.pb, p.pb_size);
+	//split_stack_pivot(&p, p.pb, pivot);
+	
 	if (!*p.pa)
 		return (0);
-	it = *p.pa;
-	i = 0;
+	//it = *p.pa;
 
 	print_all(&p);
 
