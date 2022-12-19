@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/17 00:35:31 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:17:45 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ char	*mini_join(char *str, char letter);
 void	get_double_instruction(char *str1, char *str2, t_piles *p, int show);
 
 // algo_operations
-void	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot);
+int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size);
+void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
 
 //sort_at_3
 void	sort_at_3(t_piles *p, t_stack **root);

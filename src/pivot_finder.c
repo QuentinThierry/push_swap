@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pivot_finder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/16 18:21:27 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/19 17:24:30 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ t_stack	*find_pivot(t_stack **root, int size)
 	}
 	quick_sort(to_sort, 0, size - 1);
 	it = find_value(root, to_sort[size / 2]);
-	printf("END VALUE : %d\n", it->value);
+	printf("PIVOT VALUE : %d\n", it->value);
 	return (it);
 }
