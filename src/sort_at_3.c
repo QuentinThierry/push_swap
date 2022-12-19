@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/17 00:41:01 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:42:30 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static char	*find_order(t_stack **root)
 
 static void	sort_123_321(t_piles *p, char *order, char on_pile)
 {
-	if (on_pile == 'a')
+	if (on_pile == 'b')
 	{
 		if (equals(order, "123"))
 		{
-			get_double_instruction("sa", "ra", p, 1);
-			get_double_instruction("sa", "rra", p, 1);
-			get_instruction("sa", p, 1);
+			get_double_instruction("sb", "rb", p, 1);
+			get_double_instruction("sb", "rrb", p, 1);
+			get_instruction("sb", p, 1);
 		}
 	}
 	else
@@ -60,57 +60,55 @@ static void	sort_123_321(t_piles *p, char *order, char on_pile)
 
 static void	sort_132_321(t_piles *p, char *order, char on_pile)
 {
-	if (on_pile == 'a')
+	if (on_pile == 'b')
 	{
 		if (equals(order, "132"))
 		{
-			get_double_instruction("sa", "ra", p, 1);
-			get_double_instruction("sa", "rra", p, 1);
+			get_double_instruction("sb", "rb", p, 1);
+			get_double_instruction("sb", "rrb", p, 1);
 		}
 		else
 		{
-			get_double_instruction("ra", "sa", p, 1);
-			get_instruction("rra", p, 1);
+			get_double_instruction("rb", "sb", p, 1);
+			get_instruction("rrb", p, 1);
 		}
 		return ;
 	}
 	if (equals(order, "132"))
 	{
-		get_double_instruction("rb", "sb", p, 1);
-		get_instruction("rrb", p, 1);
+		get_double_instruction("ra", "sa", p, 1);
+		get_instruction("rra", p, 1);
 	}
 	else
 	{
-		get_double_instruction("sb", "rb", p, 1);
-		get_double_instruction("sb", "rrb", p, 1);
+		get_double_instruction("sa", "ra", p, 1);
+		get_double_instruction("sa", "rra", p, 1);
 	}
 }
 
 static void	sort_213_231(t_piles *p, char *order, char on_pile)
 {
-	if (on_pile == 'a')
+	if (on_pile == 'b')
 	{
 		if (equals(order, "213"))
-		{
-			get_double_instruction("ra", "sa", p, 1);
-			get_double_instruction("rra", "sa", p, 1);
-		}
-		else
-			get_instruction("sa", p, 1);
-	}
-	else
-	{
-		if (equals(order, "213"))
-			get_instruction("sb", p, 1);
-		else
 		{
 			get_double_instruction("rb", "sb", p, 1);
 			get_double_instruction("rrb", "sb", p, 1);
 		}
+		else
+			get_instruction("sb", p, 1);
+	}
+	else
+	{
+		if (equals(order, "213"))
+			get_instruction("sa", p, 1);
+		else
+		{
+			get_double_instruction("ra", "sa", p, 1);
+			get_double_instruction("rra", "sa", p, 1);
+		}
 	}
 }
-
-
 
 void	sort_at_3(t_piles *p, t_stack **root)
 {
@@ -132,7 +130,7 @@ void	sort_at_3(t_piles *p, t_stack **root)
 }
 
 //top-bot
-//	b								| a
+//	a								| b
 
 //123 ok							| swap, rot, swap, rrot, swap
 //132 rot, swap, rrot				| swap, rot, swap, rrot

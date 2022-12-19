@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/17 00:12:14 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:40:28 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char const **argv)
 
 	print_all(&p);
 
-	sort_at_3(&p, p.pb);
+	sort_at_3(&p, p.pa);
 	//p.pb_size = list_count(p.pb);
 	//pivot = find_pivot(p.pb, p.pb_size);
 	//split_stack_pivot(&p, p.pb, pivot);
