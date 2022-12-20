@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/19 17:17:45 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:16:44 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,18 @@ int		has_duplicated_elem(char **string);
 //utils2
 char	*mini_join(char *str, char letter);
 void	get_double_instruction(char *str1, char *str2, t_piles *p, int show);
+void	int_swap(int *a, int *b);
 
 // algo_operations
-int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size);
+int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b);
+
 void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
 
 //sort_at_3
 void	sort_at_3(t_piles *p, t_stack **root);
+
+//sort_at_2
+void	sort_at_2(t_piles *p, t_stack **root);
 
 // pivot_finder
 t_stack	*find_pivot(t_stack **root, int size);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_at_3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/19 16:42:30 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/20 17:11:09 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,14 @@ void	sort_at_3(t_piles *p, t_stack **root)
 {
 	char	on_pile;
 	char	*order;
+	int		cmp;
 
 	if (root == p->pa)
 		on_pile = 'a';
 	else
 		on_pile = 'b';
 	order = find_order(root);
+	cmp = 0;
 	printf("~~~~~~~~ORDER : %s~~~~~~~~\n", order);
 	if (equals(order, "123") || equals(order, "321"))
 		sort_123_321(p, order, on_pile);

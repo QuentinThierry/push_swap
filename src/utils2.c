@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:09:06 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/17 00:35:23 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:16:36 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,13 @@ void	get_double_instruction(char *str1, char *str2, t_piles *p, int show)
 {
 	get_instruction(str1, p, show);
 	get_instruction(str2, p, show);
+}
+
+void	int_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

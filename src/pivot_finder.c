@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pivot_finder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/19 17:24:30 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/20 15:16:30 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
-
-static void	int_swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
 
 static int partition(int *tab, int left, int right)
 {
@@ -89,6 +80,7 @@ t_stack	*find_pivot(t_stack **root, int size)
 	}
 	quick_sort(to_sort, 0, size - 1);
 	it = find_value(root, to_sort[size / 2]);
+	free(to_sort);
 	printf("PIVOT VALUE : %d\n", it->value);
 	return (it);
 }

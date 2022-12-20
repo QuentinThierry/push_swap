@@ -22,6 +22,7 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	pivot_finder.c \
 	algo_operations.c \
 	sort_at_3.c \
+	sort_at_2.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \
