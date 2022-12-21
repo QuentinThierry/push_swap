@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/20 19:18:34 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:27:24 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,75 @@
 // return the number of elements send to the other stack
 int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b)
 {
-	int		i;
-	int		res;
-	char	on_pile;
-	char	on_pile2;
+	int	i;
+	int	size_a;
+	int	total;
+	int	nb_rotate;
 
-	on_pile = 'a';
-	on_pile2 = 'b';
-	if (src == p->pa)
-	{
-		on_pile = 'b';
-		on_pile2 = 'a';
-	}
 	i = 0;
-	res = 0;
-	while (i++ < size)
+	size_a = 0;
+	nb_rotate = 0;
+	total = list_count(src);
+	if (src == p->pa) // si on split sur a
 	{
-		if ((*src)->value < pivot->value)
+		while (i++ < size)
 		{
-			get_instruction(mini_join("p", on_pile), p, 1);
-			res++;
+			if ((*src)->value < pivot->value) // valeurs inferieurs son envoyees sur b
+			{
+				get_instruction("pb", p, 1);
+				(*size_b)++;
+			}
+			else
+			{
+				get_instruction("ra", p, 1);
+				nb_rotate++;
+			}
+		}
+		// printf("ici : nb %d < %d tot-i (%d)\n", nb_rotate, total - i + 1, (nb_rotate < total - i + 1));
+		if (nb_rotate < total - i + 1)
+		{
+			while (nb_rotate--)
+				get_instruction("rra", p, 1);
 		}
 		else
-			get_instruction(mini_join("r", on_pile2), p, 1);
+		{
+			while (i++ < total + 1)
+			{
+				// printf("ici\n");
+				get_instruction("ra", p, 1);
+			}
+		}
+		size_a = size - (*size_b);
 	}
-	(*size_b) = res;
-	size = size - res;
-	if (on_pile == 'a')
-		int_swap(&(*size_b), &size);
-	return (size);
+	else
+	{
+		while (i++ < size) // si on split sur b
+		{
+			if ((*src)->value >= pivot->value) // valeurs superieurs son envoyees sur a
+			{
+				get_instruction("pa", p, 1);
+				size_a++;
+			}
+			else
+				get_instruction("rb", p, 1);
+		}
+		if (total - i + 1 < nb_rotate)
+		{
+			while (nb_rotate--)
+				get_instruction("rrb", p, 1);
+		}
+		else
+		{
+			while (i++ < total + 1)
+			{
+				// printf("ici\n");
+				get_instruction("rb", p, 1);
+			}
+		}
+		*size_b = size - size_a;
+	}
+	return (size_a);
+	
 }
 
 static void	print_n_stack(t_stack **root, int n)
@@ -83,80 +123,43 @@ static void	print_all(t_piles *p)
 
 void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 {
-	t_stack	**new_root;
 	t_stack	*pivot;
-	int	cmp;
-	int	i;
-	int	size_first;
-	int	size_second;
+	char	on_pile;
+	int		size_a;
+	int		size_b;
 
-	cmp = 0;
-	print_all(p);
+	if (root == p->pa)
+		on_pile = 'a';
+	else
+		on_pile = 'b';
+	
 	if (nb_elem <= 3)
 	{
-		if (nb_elem == 3)
-			sort_at_3(p, root);
-		else
+		// printf("Tri %d elems\n", nb_elem);
+		if (nb_elem == 2)
 			sort_at_2(p, root);
-		print_n_stack(root, nb_elem);
-		if (root == p->pb)
+		else
+			sort_at_3(p, root);
+		if (on_pile == 'b')
 		{
 			while (nb_elem--)
 				get_instruction("pa", p, 1);
 		}
-		else
-		{
-			if (list_count(p->pa) > 3)
-			{
-				while (nb_elem--)
-					get_instruction("pb", p, 1);
-			}
-		}
-		printf("fin nb <= 3\n");
+		// printf("Fin sur nb_elem\n");
 		return ;
 	}
-	new_root = root;
-	printf("deb : %d\n", nb_elem);
-
-	printf("PIVOT\n");
-	size_second = 0;
+	size_b = 0;
 	pivot = find_pivot(root, nb_elem);
-	size_first = split_stack_pivot(p, root, pivot, nb_elem, &size_second);
-	printf("nb_elem de taille %d\n", nb_elem);
-	print_all(p);
-	//print_n_stack(root, nb_elem);
-	printf("rec a\n");
-	rec_algo(p, p->pa, size_first);
-	print_all(p);
-	printf("rec b\n");
-	rec_algo(p, p->pb, size_second);
-	print_all(p);
-
-	// i = 0;
-	// while (i < size_first)
-	// {
-	// 	if ((*p->pb))
-	// 		printf("repush %d on a\n", (*p->pb)->value);
-	// 	else
-	// 		printf("repush NULL on a\n");
-	// 	get_instruction("pa", p, 1);
-	// 	i++;
-	// }
+	size_a = split_stack_pivot(p, root, pivot, nb_elem, &size_b);
 	// print_all(p);
-
-	// i = 0;
-	// while (i < size_second)
-	// {
-	// 	if ((*p->pa))
-	// 		printf("repush %d on b\n", (*p->pa)->value);
-	// 	else
-	// 		printf("repush NULL on b\n");
-	// 	get_instruction("pb", p, 1);
-	// 	i++;
-	// }
-
-
-	printf("fin : %d\n", size_first + size_second);
-	print_all(p);
-
+	// printf("TAILLE A : %d\n", size_a);
+	// printf("TAILLE B : %d\n", size_b);
+	// printf("Rentre rec A\n");
+	rec_algo(p, p->pa, size_a);
+	// print_all(p);
+	// printf("Rentre rec B\n");
+	rec_algo(p, p->pb, size_b);
+	
+	// printf("Fin algo\n");
+	// print_all(p);
 }

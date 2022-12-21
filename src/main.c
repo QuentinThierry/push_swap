@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/19 17:14:47 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/21 18:27:33 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int argc, char const **argv)
 	init_stack(argc, (char **)argv, &p);
 	p.pa_size = list_count(p.pa);
 
-	printf("Pa : %d elements. \n", p.pa_size);
-	print_all(&p);
+	// printf("Pa : %d elements. \n", p.pa_size);
+	// print_all(&p);
 
 	//pivot = find_pivot(p.pa, p.pa_size);
 	//split_stack_pivot(&p, p.pa, pivot);
@@ -43,6 +43,16 @@ int	main(int argc, char const **argv)
 	//print_all(&p);
 
 	//sort_at_3(&p, p.pa);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// get_instruction("pb", &p, 1);
+	// print_all(&p);
+	
 	rec_algo(&p, p.pa, p.pa_size);
 	//p.pb_size = list_count(p.pb);
 	//pivot = find_pivot(p.pb, p.pb_size);
@@ -52,7 +62,7 @@ int	main(int argc, char const **argv)
 		return (0);
 	//it = *p.pa;
 
-	print_all(&p);
+	// print_all(&p);
 
 	free_stack(*p.pa);
 	free_stack(*p.pb);

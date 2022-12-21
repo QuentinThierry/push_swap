@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:22:10 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/20 16:20:28 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:52:43 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sort_at_2(t_piles *p, t_stack **root)
 {
 
-	printf("Sort at 2\n");
+	// printf("Sort at 2\n");
 	if (*root == (*root)->next)
 		return ;
 	if (root == p->pa && (*root)->value > (*root)->next->value)

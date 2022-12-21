@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/20 17:11:09 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:52:31 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	sort_at_3(t_piles *p, t_stack **root)
 		on_pile = 'b';
 	order = find_order(root);
 	cmp = 0;
-	printf("~~~~~~~~ORDER : %s~~~~~~~~\n", order);
+	// printf("~~~~~~~~ORDER : %s~~~~~~~~\n", order);
 	if (equals(order, "123") || equals(order, "321"))
 		sort_123_321(p, order, on_pile);
 	else if (equals(order, "132") || equals(order, "312"))
