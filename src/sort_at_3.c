@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/21 16:52:31 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/22 16:32:04 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static void	sort_123_321(t_piles *p, char *order, char on_pile)
 	{
 		if (equals(order, "321"))
 		{
-			get_double_instruction("sb", "rb", p, 1);
-			get_double_instruction("sb", "rrb", p, 1);
-			get_instruction("sb", p, 1);
+			get_double_instruction("sa", "ra", p, 1);
+			get_double_instruction("sa", "rra", p, 1);
+			get_instruction("sa", p, 1);
 		}
 	}
 }
