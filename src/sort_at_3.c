@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/22 16:32:04 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/22 18:43:06 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	sort_123_321(t_piles *p, char *order, char on_pile)
 	}
 }
 
-static void	sort_132_321(t_piles *p, char *order, char on_pile)
+static void	sort_132_312(t_piles *p, char *order, char on_pile)
 {
 	if (on_pile == 'b')
 	{
@@ -68,10 +68,7 @@ static void	sort_132_321(t_piles *p, char *order, char on_pile)
 			get_double_instruction("sb", "rrb", p, 1);
 		}
 		else
-		{
-			get_double_instruction("rb", "sb", p, 1);
-			get_instruction("rrb", p, 1);
-		}
+			get_double_instruction("pa", "sb", p, 1);
 		return ;
 	}
 	if (equals(order, "132"))
@@ -110,25 +107,27 @@ static void	sort_213_231(t_piles *p, char *order, char on_pile)
 	}
 }
 
-void	sort_at_3(t_piles *p, t_stack **root)
+int	sort_at_3(t_piles *p, t_stack **root)
 {
 	char	on_pile;
 	char	*order;
-	int		cmp;
+	int		nb_elem;
 
 	if (root == p->pa)
 		on_pile = 'a';
 	else
 		on_pile = 'b';
 	order = find_order(root);
-	cmp = 0;
-	// printf("~~~~~~~~ORDER : %s~~~~~~~~\n", order);
+	nb_elem = 3;
 	if (equals(order, "123") || equals(order, "321"))
 		sort_123_321(p, order, on_pile);
 	else if (equals(order, "132") || equals(order, "312"))
-		sort_132_321(p, order, on_pile);
+		sort_132_312(p, order, on_pile);
 	else if (equals(order, "213") || equals(order, "231"))
 		sort_213_231(p, order, on_pile);
+	if (on_pile == 'b' && equals(order, "312"))
+		nb_elem--;
+	return (nb_elem);
 }
 
 //top-bot
