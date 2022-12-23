@@ -6,35 +6,46 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/23 18:04:31 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:43:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
-
-// int	find_pos_of_last_sup(t_stack **src, int pivot_value, int size)
+#include <time.h>
+ 
+// static void	print_all(t_piles *p)
 // {
-// 	int		i;
-// 	int		j;
-// 	t_stack	*it;
-
-// 	i = 0;
-// 	it = *src;
-// 	j = 0;
-// 	while (it != NULL && i < size)
-// 	{
-// 		if (it->value > pivot_value)
-// 			j = 0;
-// 		else
-// 			j++;
-// 		it = it->next;
-// 		if (it == *src)
-// 			break ;
-// 		i++;
-// 	}
-// 	printf("ici : %d / %d / %d\n", size, j, size - j);
-// 	return (size - j);
+// 	printf("---------a---------\n");
+// 	print_stack(p->pa);
+// 	printf("---------b---------\n");
+// 	print_stack(p->pb);
+// 	printf("-------------------\n");
 // }
+
+int	find_pos_of_last(t_piles *p,t_stack **src, int pivot_value, int size)
+{
+	int		i;
+	int		j;
+	t_stack	*it;
+
+	i = 0;
+	it = *src;
+	j = 0;
+	while (it != NULL && i < size)
+	{
+		if ((it->value < pivot_value && p->pa == src) ||
+			(it->value > pivot_value && p->pb == src))
+			j = 0;
+		else
+			j++;
+		it = it->next;
+		if (it == *src)
+			break ;
+		i++;
+	}
+	// printf("ici : %d / %d / %d\n", size, j, size - j);
+	return (size - j);
+}
 
 int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b)
 {
@@ -47,10 +58,12 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	i = 0;
 	size_a = 0;
 	nb_rotate = 0;
+	virtual_size = find_pos_of_last(p, src, pivot->value, size);
+	// virtual_size = size;
 	total = list_count(src);
 	if (src == p->pa) // si on split sur a
 	{
-		while (i++ < size)
+		while (i++ < virtual_size)
 		{
 			if ((*src)->value < pivot->value)
 			{
@@ -77,7 +90,7 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	}
 	else // si on split sur b
 	{
-		while (i++ < size)
+		while (i++ < virtual_size)
 		{
 			if ((*src)->value >= pivot->value)
 			{
@@ -105,37 +118,28 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	return (size_a);
 }
 
-static void	print_n_stack(t_stack **root, int n)
-{
-	t_stack	*it;
-	int		i;
+// static void	print_n_stack(t_stack **root, int n)
+// {
+// 	t_stack	*it;
+// 	int		i;
 
-	it = *root;
-	if (!it)
-	{
-		printf("EMPTY\n");
-		return ;
-	}
-	i = 0;
-	printf("n_stack : \n");
-	while (i < n)
-	{
-		printf("%d\n", it->value);
-		it = it->next;
-		if (it == *root)
-			break ;
-		i++;
-	}
-}
-
-static void	print_all(t_piles *p)
-{
-	printf("---------a---------\n");
-	print_stack(p->pa);
-	printf("---------b---------\n");
-	print_stack(p->pb);
-	printf("-------------------\n");
-}
+// 	it = *root;
+// 	if (!it)
+// 	{
+// 		printf("EMPTY\n");
+// 		return ;
+// 	}
+// 	i = 0;
+// 	printf("n_stack : \n");
+// 	while (i < n)
+// 	{
+// 		printf("%d\n", it->value);
+// 		it = it->next;
+// 		if (it == *root)
+// 			break ;
+// 		i++;
+// 	}
+// }
 
 void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 {

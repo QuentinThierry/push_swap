@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/22 19:17:32 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/23 19:50:56 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	int_swap(int *a, int *b);
 
 // algo_operations
 int		split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b);
-int		find_pos_of_last_sup(t_stack **src, int pivot_value, int size);
 
 void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
 
