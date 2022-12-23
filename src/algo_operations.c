@@ -6,35 +6,35 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/22 20:09:50 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:04:31 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-int	find_pos_of_last_sup(t_stack **src, int pivot_value, int size)
-{
-	int		i;
-	int		j;
-	t_stack	*it;
+// int	find_pos_of_last_sup(t_stack **src, int pivot_value, int size)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_stack	*it;
 
-	i = 0;
-	it = *src;
-	j = 0;
-	while (it != NULL && i < size)
-	{
-		if (it->value > pivot_value)
-			j = 0;
-		else
-			j++;
-		it = it->next;
-		if (it == *src)
-			break ;
-		i++;
-	}
-	printf("ici : %d / %d / %d\n", size, j, size - j);
-	return (size - j);
-}
+// 	i = 0;
+// 	it = *src;
+// 	j = 0;
+// 	while (it != NULL && i < size)
+// 	{
+// 		if (it->value > pivot_value)
+// 			j = 0;
+// 		else
+// 			j++;
+// 		it = it->next;
+// 		if (it == *src)
+// 			break ;
+// 		i++;
+// 	}
+// 	printf("ici : %d / %d / %d\n", size, j, size - j);
+// 	return (size - j);
+// }
 
 int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b)
 {
@@ -47,13 +47,10 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	i = 0;
 	size_a = 0;
 	nb_rotate = 0;
-	virtual_size = find_pos_of_last_sup(src, pivot->value, size);
-	printf("total : %d - %d = %d\n", size, virtual_size, size - virtual_size);
 	total = list_count(src);
-	// printf("virtual tot : %d - %d + %d = %d\n", list_count(src), virtual_tot, size, total);
 	if (src == p->pa) // si on split sur a
 	{
-		while (i++ < virtual_size)
+		while (i++ < size)
 		{
 			if ((*src)->value < pivot->value)
 			{
@@ -80,7 +77,7 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	}
 	else // si on split sur b
 	{
-		while (i++ < virtual_size)
+		while (i++ < size)
 		{
 			if ((*src)->value >= pivot->value)
 			{
