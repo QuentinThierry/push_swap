@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   algo_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/23 19:43:27 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/25 21:02:42 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
-#include <time.h>
  
 // static void	print_all(t_piles *p)
 // {

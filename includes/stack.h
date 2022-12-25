@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/23 19:50:56 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/25 21:03:08 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_piles
 {
 	t_stack	**pa;
 	t_stack	**pb;
+	char	*buffer;
 	int		pa_size;
 	int		pb_size;
 }	t_piles;
@@ -76,8 +77,10 @@ void	int_swap(int *a, int *b);
 
 // algo_operations
 int		split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b);
-
 void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
+
+// printers
+void	send_instruction(t_piles *p, char *str);
 
 //sort_at_3
 int		sort_at_3(t_piles *p, t_stack **root);

@@ -23,6 +23,7 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	algo_operations.c \
 	sort_at_3.c \
 	sort_at_2.c \
+	printer.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \
@@ -36,6 +37,7 @@ SRC_C = $(addprefix $(SRC_DIR), \
 	parsing_instructions.c \
 	get_next_line.c \
 	get_next_line_utils.c \
+	printer.c \
 	checker_main.c)
 
 OBJ_P = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_P))

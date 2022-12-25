@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:05:06 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/17 00:33:49 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/25 21:14:13 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static int	swap_op(char *str, t_piles *p, int show)
 	if (equals(str, "sa"))
 	{
 		if (show)
-			write(1, "sa\n", 3);
+			send_instruction(p, "sa\n");
 		swap(p->pa);
 		return (1);
 	}
 	else if (equals(str, "sb"))
 	{
 		if (show)
-			write(1, "sb\n", 3);
+			send_instruction(p, "sb\n");
 		swap(p->pb);
 		return (1);
 	}
 	else if (equals(str, "ss"))
 	{
 		if (show)
-			write(1, "ss\n", 3);
+			send_instruction(p, "ss\n");
 		swap(p->pa);
 		swap(p->pb);
 		return (1);
@@ -44,14 +44,14 @@ static int	push_op(char *str, t_piles *p, int show)
 	if (equals(str, "pa"))
 	{
 		if (show)
-			write(1, "pa\n", 3);
+			send_instruction(p, "pa\n");
 		push(p->pa, p->pb);
 		return (1);
 	}
 	else if (equals(str, "pb"))
 	{
 		if (show)
-			write(1, "pb\n", 3);
+			send_instruction(p, "pb\n");
 		push(p->pb, p->pa);
 		return (1);
 	}
@@ -63,21 +63,21 @@ static int	rotate_op(char *str, t_piles *p, int show)
 	if (equals(str, "ra"))
 	{
 		if (show)
-			write(1, "ra\n", 3);
+			send_instruction(p, "ra\n");
 		rotate(p->pa);
 		return (1);
 	}
 	else if (equals(str, "rb"))
 	{
 		if (show)
-			write(1, "rb\n", 3);
+			send_instruction(p, "rb\n");
 		rotate(p->pb);
 		return (1);
 	}
 	else if (equals(str, "rr"))
 	{
 		if (show)
-			write(1, "rr\n", 3);
+			send_instruction(p, "rr\n");
 		rotate(p->pa);
 		rotate(p->pb);
 		return (1);
@@ -90,21 +90,21 @@ static int	rrotate_op(char *str, t_piles *p, int show)
 	if (equals(str, "rra"))
 	{
 		if (show)
-			write(1, "rra\n", 4);
+			send_instruction(p, "rra\n");
 		rrotate(p->pa);
 		return (1);
 	}
 	else if (equals(str, "rrb"))
 	{
 		if (show)
-			write(1, "rrb\n", 4);
+			send_instruction(p, "rrb\n");
 		rrotate(p->pb);
 		return (1);
 	}
 	else if (equals(str, "rrr"))
 	{
 		if (show)
-			write(1, "rrr\n", 4);
+			send_instruction(p, "rrr\n");
 		rrotate(p->pa);
 		rrotate(p->pb);
 		return (1);
