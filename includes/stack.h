@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/25 21:03:08 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/27 18:22:49 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+
+typedef struct s_list
+{
+	char			*str;
+	struct s_list	*next;
+}	t_list;
 
 typedef struct s_stack
 {
@@ -32,6 +38,8 @@ typedef struct s_piles
 	char	*buffer;
 	int		pa_size;
 	int		pb_size;
+	t_list	*buffer_a;
+	t_list	*buffer_b;
 }	t_piles;
 
 // list_operations
@@ -81,6 +89,7 @@ void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
 
 // printers
 void	send_instruction(t_piles *p, char *str);
+void	flush_instruction(t_piles *p);
 
 //sort_at_3
 int		sort_at_3(t_piles *p, t_stack **root);

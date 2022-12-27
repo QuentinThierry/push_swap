@@ -6,12 +6,21 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:59:40 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/22 17:10:11 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/27 19:01:38 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 #include "../includes/get_next_line.h"
+
+static void	print_all(t_piles *p)
+{
+	printf("---------a---------\n");
+	print_stack(p->pa);
+	printf("---------b---------\n");
+	print_stack(p->pb);
+	printf("-------------------\n");
+}
 
 static void	wait_instructions(t_piles	*p)
 {
@@ -40,6 +49,7 @@ int	main(int argc, char const **argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	print_all(&p);
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);
