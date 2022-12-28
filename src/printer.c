@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/27 20:23:17 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:54:23 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,40 +209,13 @@ void	add_instruction(t_piles *p, char *instruc)
 
 void	send_instruction(t_piles *p, char *str)
 {
-	// write (1, str, ft_strlen(str));
-	// return ;
-
-	// t_list *to_print;
-
-	// printf("------start--------\n");
-	// to_print = p->buffer_a;
-	// while (to_print)
-	// {
-	// 	printf("\\\n");
-	// 	write(1, to_print->str, ft_strlen(to_print->str));
-	// 	to_print = to_print->next;
-	// }
-	// to_print = p->buffer_b;
-	// printf("-----\n");
-	// while (to_print)
-	// {
-	// 	printf("\\\n");
-	// 	write(1, to_print->str, ft_strlen(to_print->str));
-	// 	to_print = to_print->next;
-	// }
-	// printf("------end--------\n");
-
-
 	if (equals(str, "pa\n") || equals(str, "pb\n"))
 	{
-		// printf("EQUALS===========\n");
 		flush_instruction(p);
-		// write(1, "------\n", 7);
 		write(1, str, ft_strlen(str));
 		return ;
 	}
 	add_instruction(p, str);
 }
-
 
 //99 95 81 38 11 61 58 32 39 72 67 68 54 31 40 57 7 23 21 89 85 6 30 66 71 43 96 78 69 82 42 64 93 59 9 50 55 16 4 44 92 15 76 22 75 65 25 84 94 33 1 18 17 41 77 73 19 26 5 46 20 3 97 27 45 47 52 29 48 80 24 51 12 100 60 91 13 62 37 90 87 83 14 28 34 56 70 86 8 63 10 35 2 74 49 98 36 88 53 79 

@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/27 20:09:38 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:24:15 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,37 +140,6 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 // 	}
 // }
 
-// void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
-// {
-// 	t_stack	*pivot;
-// 	char	on_pile;
-// 	int		size_a;
-// 	int		size_b;
-
-// 	if (root == p->pa)
-// 		on_pile = 'a';
-// 	else
-// 		on_pile = 'b';
-// 	if (nb_elem <= 3)
-// 	{
-// 		if (nb_elem == 2)
-// 			sort_at_2(p, root);
-// 		else
-// 			nb_elem = sort_at_3(p, root);
-// 		if (on_pile == 'b')
-// 		{
-// 			while (nb_elem--)
-// 				get_instruction("pa", p, 1);
-// 		}
-// 		return ;
-// 	}
-// 	size_b = 0;
-// 	pivot = find_pivot(root, nb_elem);
-// 	size_a = split_stack_pivot(p, root, pivot, nb_elem, &size_b);
-// 	rec_algo(p, p->pa, size_a);
-// 	rec_algo(p, p->pb, size_b);
-// }
-
 void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 {
 	t_stack	*pivot;
@@ -187,7 +156,12 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 		if (nb_elem == 2)
 			sort_at_2(p, root);
 		else
-			nb_elem = sort_at_3(p, root);
+		{
+			if (list_count(root) == 3)
+				special_sort_3(p, root);
+			else
+				nb_elem = sort_at_3(p, root);
+		}
 		if (on_pile == 'b')
 		{
 			while (nb_elem--)

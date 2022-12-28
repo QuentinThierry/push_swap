@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_at_3.c                                        :+:      :+:    :+:   */
+/*   special_sort.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 17:03:45 by qthierry         ###   ########.fr       */
+/*   Created: 2022/12/28 16:54:48 by qthierry          #+#    #+#             */
+/*   Updated: 2022/12/28 17:18:08 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,104 +38,80 @@ static char	*find_order(t_stack **root)
 
 static void	sort_123_321(t_piles *p, char *order, char on_pile)
 {
-	if (on_pile == 'b')
+	if (on_pile == 'a')
 	{
-		if (equals(order, "123"))
-		{
-			get_double_instruction("sb", "rb", p, 1);
-			get_double_instruction("sb", "rrb", p, 1);
-			get_instruction("sb", p, 1);
-		}
+		if (equals(order, "321"))
+			get_double_instruction("sa", "ra", p, 1);
 	}
 	else
 	{
-		if (equals(order, "321"))
-		{
-			get_double_instruction("sa", "ra", p, 1);
-			get_double_instruction("sa", "rra", p, 1);
-			get_instruction("sa", p, 1);
-		}
+		if (equals(order, "123"))
+			get_double_instruction("sb", "rb", p, 1);
 	}
 }
 
 static void	sort_132_312(t_piles *p, char *order, char on_pile)
 {
-	if (on_pile == 'b')
+	if (on_pile == 'a')
 	{
 		if (equals(order, "132"))
-		{
-			get_double_instruction("sb", "rb", p, 1);
-			get_double_instruction("sb", "rrb", p, 1);
-		}
-		else
-			get_double_instruction("pa", "sb", p, 1);
-		return ;
-	}
-	if (equals(order, "132"))
-	{
-		get_double_instruction("ra", "sa", p, 1);
-		get_instruction("rra", p, 1);
+			get_double_instruction("sa", "ra", p, 1);
+		else if (equals(order, "312"))
+			get_instruction("rra", p, 1);
 	}
 	else
 	{
-		get_double_instruction("sa", "ra", p, 1);
-		get_double_instruction("sa", "rra", p, 1);
+		if (equals(order, "132"))
+			get_instruction("rrb", p, 1);
+		else if (equals(order, "312"))
+			get_double_instruction("sb", "rb", p, 1);
 	}
 }
 
 static void	sort_213_231(t_piles *p, char *order, char on_pile)
 {
-	if (on_pile == 'b')
+	if (on_pile == 'a')
 	{
 		if (equals(order, "213"))
-		{
-			get_double_instruction("rb", "sb", p, 1);
-			get_double_instruction("rrb", "sb", p, 1);
-		}
-		else
-			get_instruction("sb", p, 1);
+			get_instruction("sa", p, 1);
+		else if (equals(order, "231"))
+			get_instruction("ra", p, 1);
 	}
 	else
 	{
 		if (equals(order, "213"))
-			get_instruction("sa", p, 1);
-		else
-		{
-			get_double_instruction("ra", "sa", p, 1);
-			get_double_instruction("rra", "sa", p, 1);
-		}
+			get_instruction("rb", p, 1);
+		else if (equals(order, "231"))
+			get_instruction("sb", p, 1);
 	}
 }
 
-int	sort_at_3(t_piles *p, t_stack **root)
+void	special_sort_3(t_piles *p, t_stack **root)
 {
 	char	on_pile;
 	char	*order;
-	int		nb_elem;
 
 	if (root == p->pa)
 		on_pile = 'a';
 	else
 		on_pile = 'b';
 	order = find_order(root);
-	nb_elem = 3;
 	if (equals(order, "123") || equals(order, "321"))
 		sort_123_321(p, order, on_pile);
 	else if (equals(order, "132") || equals(order, "312"))
 		sort_132_312(p, order, on_pile);
 	else if (equals(order, "213") || equals(order, "231"))
 		sort_213_231(p, order, on_pile);
-	if (on_pile == 'b' && equals(order, "312"))
-		nb_elem--;
-	return (nb_elem);
 }
 
-//top-bot
-//	a								| b
 
-//123 ok							| swap, rot, swap, rrot, swap
-//132 rot, swap, rrot				| swap, rot, swap, rrot
-//213 swap 							| rot, swap, rrot, swap
-//231 rot, swap, rrot, swap			| swap
-//312 swap, rot, swap, rrot			| rot, swap, rrot
-//321 swap, rot, swap, rrot, swap	| ok
+//	top-bot
+
+//		a			|	b
+
+//123	ok			|	swap rot
+//132	swap rot	|	rrot
+//213	swap		|	rot
+//231	rot			|	swap
+//312	rrot		|	swap rot
+//321	swap rot	|	ok

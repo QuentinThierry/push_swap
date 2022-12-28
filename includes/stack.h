@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/27 18:22:49 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/28 16:56:49 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
 // printers
 void	send_instruction(t_piles *p, char *str);
 void	flush_instruction(t_piles *p);
+
+//special_sort
+void	special_sort_3(t_piles *p, t_stack **root);
 
 //sort_at_3
 int		sort_at_3(t_piles *p, t_stack **root);

@@ -24,6 +24,7 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	sort_at_3.c \
 	sort_at_2.c \
 	printer.c \
+	special_sort.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \
