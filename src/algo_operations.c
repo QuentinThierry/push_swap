@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 17:24:15 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:50:46 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 			while (nb_elem--)
 				get_instruction("pa", p, 1);
 		}
+		// printf("end\n");
 		return ;
 	}
 	size_b = 0;

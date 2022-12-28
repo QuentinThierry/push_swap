@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 16:54:23 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/28 19:06:05 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*get_match(char *str)
 		return ("sb\n");
 	if (equals(str, "sb\n"))
 		return ("sa\n");
-	return (NULL);
+	return ("");
 }
 
 void	free_tlist(t_list **lst)
@@ -110,13 +110,63 @@ t_list	*merge_instruction(t_piles *p)
 	res = NULL;
 	dist_a = 0;
 	dist_b = 0;
-	while (p->buffer_a && p->buffer_b)
+	tmp = p->buffer_a;
+	while (p->buffer_a && p->buffer_a->next)
 	{
 		if (p->buffer_a->next)
 		{
 			if (equals(p->buffer_a->str, "rra\n") && equals(p->buffer_a->next->str, "ra\n"))
-				p->buffer_a = p->buffer_a->next;
+			{
+				p->buffer_a->str = "";
+				p->buffer_a->next->str = "";
+			}
 		}
+		p->buffer_a = p->buffer_a->next;
+	}
+	p->buffer_a = tmp;
+	while (p->buffer_a && p->buffer_a->next)
+	{
+		if (p->buffer_a->next)
+		{
+			if (equals(p->buffer_a->str, "ra\n") && equals(p->buffer_a->next->str, "rra\n"))
+			{
+				p->buffer_a->str = "";
+				p->buffer_a->next->str = "";
+			}
+		}
+		p->buffer_a = p->buffer_a->next;
+	}
+	p->buffer_a = tmp;
+	tmp = p->buffer_b;
+	while (p->buffer_b && p->buffer_b->next)
+	{
+		if (p->buffer_b->next)
+		{
+			if (equals(p->buffer_b->str, "rrb\n") && equals(p->buffer_b->next->str, "rb\n"))
+			{
+				p->buffer_b->str = "";
+				p->buffer_b->next->str = "";
+			}
+		}
+		p->buffer_b = p->buffer_b->next;
+	}
+	p->buffer_b = tmp;
+	tmp = p->buffer_b;
+	while (p->buffer_b && p->buffer_b->next)
+	{
+		if (p->buffer_b->next)
+		{
+			if (equals(p->buffer_b->str, "rb\n") && equals(p->buffer_b->next->str, "rrb\n"))
+			{
+				p->buffer_b->str = "";
+				p->buffer_b->next->str = "";
+			}
+		}
+		p->buffer_b = p->buffer_b->next;
+	}
+	p->buffer_b = tmp;
+	while (p->buffer_a && p->buffer_b)
+	{
 		match_a = get_match(p->buffer_a->str);
 		match_b = get_match(p->buffer_b->str);
 		if (equals(match_a, p->buffer_b->str))
@@ -209,13 +259,14 @@ void	add_instruction(t_piles *p, char *instruc)
 
 void	send_instruction(t_piles *p, char *str)
 {
+
 	if (equals(str, "pa\n") || equals(str, "pb\n"))
 	{
 		flush_instruction(p);
+		// write(1, "----", 4);
 		write(1, str, ft_strlen(str));
 		return ;
 	}
+	// write(1, "\\\n", 2);
 	add_instruction(p, str);
 }
-
-//99 95 81 38 11 61 58 32 39 72 67 68 54 31 40 57 7 23 21 89 85 6 30 66 71 43 96 78 69 82 42 64 93 59 9 50 55 16 4 44 92 15 76 22 75 65 25 84 94 33 1 18 17 41 77 73 19 26 5 46 20 3 97 27 45 47 52 29 48 80 24 51 12 100 60 91 13 62 37 90 87 83 14 28 34 56 70 86 8 63 10 35 2 74 49 98 36 88 53 79 

@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/27 19:26:19 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/28 18:42:48 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int argc, char const **argv)
 	if (!*p.pa)
 		return (0);
 	// printf("final flush\n");
-	flush_instruction(&p);
+	// flush_instruction(&p);
 	// print_all(&p);
 	free_stack(*p.pa);
 	free_stack(*p.pb);
