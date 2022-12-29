@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/27 18:12:49 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:38:11 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ static t_stack	*find_value(t_stack **root, int value)
 	return (it);
 }
 
-t_stack	*find_pivot(t_stack **root, int size)
+t_stack	*find_pivot(t_stack **root, int size, int is_first)
 {
 	int		*to_sort;
 	int		i;
+	int		position;
 	t_stack	*it;
 
 	to_sort = malloc(sizeof(int) * size);
@@ -79,7 +80,10 @@ t_stack	*find_pivot(t_stack **root, int size)
 		i++;
 	}
 	quick_sort(to_sort, 0, size - 1);
-	it = find_value(root, to_sort[size / 2]);
+	position = size / 2;
+	if (is_first)
+		position = size / 4;
+	it = find_value(root, to_sort[position]);
 	free(to_sort);
 	return (it);
 }

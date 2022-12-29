@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 19:06:05 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:09:06 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,6 +260,8 @@ void	add_instruction(t_piles *p, char *instruc)
 void	send_instruction(t_piles *p, char *str)
 {
 
+	write (1, str, ft_strlen(str));
+	return ;
 	if (equals(str, "pa\n") || equals(str, "pb\n"))
 	{
 		flush_instruction(p);

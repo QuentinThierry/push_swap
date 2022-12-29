@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:54:48 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 19:09:00 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:36:20 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,11 @@ void	special_sort_3(t_piles *p, t_stack **root)
 		sort_132_312(p, order, on_pile);
 	else if (equals(order, "213") || equals(order, "231"))
 		sort_213_231(p, order, on_pile);
+	if (on_pile == 'b')
+	{
+		get_double_instruction("pa", "pa", p, 1);
+		get_instruction("pa", p, 1);
+	}
 }
 
 

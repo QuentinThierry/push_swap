@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 18:50:46 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:47:26 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 // 	printf("-------------------\n");
 // }
 
+// find the position of the last greatest(a)/lowest(b) in stack
 int	find_pos_of_last(t_piles *p,t_stack **src, int pivot_value, int size)
 {
 	int		i;
@@ -33,7 +34,7 @@ int	find_pos_of_last(t_piles *p,t_stack **src, int pivot_value, int size)
 	while (it != NULL && i < size)
 	{
 		if ((it->value < pivot_value && p->pa == src) ||
-			(it->value > pivot_value && p->pb == src))
+			(it->value >= pivot_value && p->pb == src))
 			j = 0;
 		else
 			j++;
@@ -42,7 +43,6 @@ int	find_pos_of_last(t_piles *p,t_stack **src, int pivot_value, int size)
 			break ;
 		i++;
 	}
-	// printf("ici : %d / %d / %d\n", size, j, size - j);
 	return (size - j);
 }
 
@@ -53,13 +53,17 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	int	total;
 	int	nb_rotate;
 	int	virtual_size;
+	int	first_pivot;
+	int	is_first;
 
 	i = 0;
 	size_a = 0;
 	nb_rotate = 0;
+	is_first = list_count(p->pb) == 0;
 	virtual_size = find_pos_of_last(p, src, pivot->value, size);
-	// virtual_size = size;
 	total = list_count(src);
+	if (is_first)
+		first_pivot = find_pivot(src, size, 1)->value;
 	if (src == p->pa) // si on split sur a
 	{
 		while (i++ < virtual_size)
@@ -67,6 +71,8 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 			if ((*src)->value < pivot->value)
 			{
 				get_instruction("pb", p, 1);
+				if (is_first && (*p->pb)->value < first_pivot)
+					get_instruction("rb", p, 1);
 				(*size_b)++;
 			}
 			else
@@ -158,7 +164,7 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 		else
 		{
 			if (list_count(root) == 3)
-				special_sort_3(p, root);
+				sort_at_3(p, root);
 			else
 				nb_elem = sort_at_3(p, root);
 		}
@@ -167,11 +173,11 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 			while (nb_elem--)
 				get_instruction("pa", p, 1);
 		}
-		// printf("end\n");
+		printf("end\n");
 		return ;
 	}
 	size_b = 0;
-	pivot = find_pivot(root, nb_elem);
+	pivot = find_pivot(root, nb_elem, 0);
 	size_a = split_stack_pivot(p, root, pivot, nb_elem, &size_b);
 	rec_algo(p, p->pa, size_a);
 	rec_algo(p, p->pb, size_b);

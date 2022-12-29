@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/28 16:56:49 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 16:34:45 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int		sort_at_3(t_piles *p, t_stack **root);
 void	sort_at_2(t_piles *p, t_stack **root);
 
 // pivot_finder
-t_stack	*find_pivot(t_stack **root, int size);
+t_stack	*find_pivot(t_stack **root, int size, int is_first);
 
 // ft_split
 char	**ft_split(const char *string, char c);
