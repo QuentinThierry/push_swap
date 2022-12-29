@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 17:47:26 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:56:21 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,14 +149,17 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 {
 	t_stack	*pivot;
-	char	on_pile;
 	int		size_a;
 	int		size_b;
 
-	if (root == p->pa)
-		on_pile = 'a';
-	else
-		on_pile = 'b';
+	if (root == p->pa && is_sorted(root, 0))
+		return ;
+	if (root == p->pb && is_sorted(root, 1))	
+	{
+		while (nb_elem--)
+			get_instruction("pa", p, 1);
+		return ;
+	}
 	if (nb_elem <= 3)
 	{
 		if (nb_elem == 2)
@@ -168,12 +171,6 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 			else
 				nb_elem = sort_at_3(p, root);
 		}
-		if (on_pile == 'b')
-		{
-			while (nb_elem--)
-				get_instruction("pa", p, 1);
-		}
-		printf("end\n");
 		return ;
 	}
 	size_b = 0;

@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 22:21:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 17:45:53 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:38:04 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,16 @@ static void	sort_123_321(t_piles *p, char *order, char on_pile)
 	{
 		if (equals(order, "123"))
 		{
-			get_double_instruction("sb", "rb", p, 1);
-			get_double_instruction("sb", "rrb", p, 1);
-			get_instruction("sb", p, 1);
+			// "rb" "sb" "pa" "pa" "rrb" "pa"
+			get_double_instruction("rb", "sb", p, 1);
+			get_double_instruction("pa", "pa", p, 1);
+			get_double_instruction("rrb", "pa", p, 1);
+		}
+		else
+		{
+			// "pa" "pa" "pa"
+			get_double_instruction("pa", "pa", p, 1);
+			get_instruction("pa", p, 1);
 		}
 	}
 	else
@@ -64,11 +71,17 @@ static void	sort_132_312(t_piles *p, char *order, char on_pile)
 	{
 		if (equals(order, "132"))
 		{
-			get_double_instruction("sb", "rb", p, 1);
-			get_double_instruction("sb", "rrb", p, 1);
+			// "sb" "pa" "sb" "pa" "pa"
+			get_double_instruction("sb", "pa", p, 1);
+			get_double_instruction("sb", "pa", p, 1);
+			get_instruction("pa", p, 1);
 		}
 		else
+		{
+			// "pa" "sb" "pa" "pa"
 			get_double_instruction("pa", "sb", p, 1);
+			get_double_instruction("pa", "pa", p, 1);
+		}
 		return ;
 	}
 	if (equals(order, "132"))
@@ -89,11 +102,17 @@ static void	sort_213_231(t_piles *p, char *order, char on_pile)
 	{
 		if (equals(order, "213"))
 		{
+			// "rb" "sb" "pa" "rrb" "pa" "pa"
 			get_double_instruction("rb", "sb", p, 1);
-			get_double_instruction("rrb", "sb", p, 1);
+			get_double_instruction("pa", "rrb", p, 1);
+			get_double_instruction("pa", "pa", p, 1);
 		}
 		else
-			get_instruction("sb", p, 1);
+		{
+			// "sb" "pa" "pa" "pa"
+			get_double_instruction("sb", "pa", p, 1);
+			get_double_instruction("pa", "pa", p, 1);
+		}
 	}
 	else
 	{
@@ -125,17 +144,15 @@ int	sort_at_3(t_piles *p, t_stack **root)
 		sort_132_312(p, order, on_pile);
 	else if (equals(order, "213") || equals(order, "231"))
 		sort_213_231(p, order, on_pile);
-	if (on_pile == 'b' && equals(order, "312"))
-		nb_elem--;
 	return (nb_elem);
 }
 
 //top-bot
 //	a								| b
 
-//123 ok							| swap, rot, swap, rrot, swap
-//132 rot, swap, rrot				| swap, rot, swap, rrot
-//213 swap 							| rot, swap, rrot, swap
-//231 rot, swap, rrot, swap			| swap
-//312 swap, rot, swap, rrot			| rot, swap, rrot
-//321 swap, rot, swap, rrot, swap	| ok
+//123 ok							| rot, swap, pa, pa, rrot, pa
+//132 rot, swap, rrot				| swap pa swap pa pa
+//213 swap 							| rot, swap, pa, rrot, pa, pa
+//231 rot, swap, rrot, swap			| swap, pa, pa, pa
+//312 swap, rot, swap, rrot			| pa, swap, pa, pa
+//321 swap, rot, swap, rrot, swap	| pa, pa, pa
