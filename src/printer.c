@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:30:04 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 20:15:43 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,19 @@ char	*get_merge(char *str)
 	return (NULL);
 }
 
-t_list	*merge_instruction(t_piles *p)
+static void	remove_neutre_a(t_piles *p)
 {
-	int		dist_a;
-	int		dist_b;
-	char	*match_a;
-	char	*match_b;
-	t_list	*res;
 	t_list	*tmp;
 
-	res = NULL;
-	dist_a = 0;
-	dist_b = 0;
 	tmp = p->buffer_a;
 	while (p->buffer_a && p->buffer_a->next)
 	{
 		if (p->buffer_a->next)
 		{
-			if (equals(p->buffer_a->str, "rra\n") && equals(p->buffer_a->next->str, "ra\n"))
+			if ((equals(p->buffer_a->str, "rra\n")
+				&& equals(p->buffer_a->next->str, "ra\n"))
+				|| (equals(p->buffer_a->str, "ra\n")
+				&& equals(p->buffer_a->next->str, "rra\n")))
 			{
 				p->buffer_a->str = "";
 				p->buffer_a->next->str = "";
@@ -124,11 +119,21 @@ t_list	*merge_instruction(t_piles *p)
 		p->buffer_a = p->buffer_a->next;
 	}
 	p->buffer_a = tmp;
+}
+
+static void	remove_neutre_b(t_piles *p)
+{
+	t_list	*tmp;
+
+	tmp = p->buffer_a;
 	while (p->buffer_a && p->buffer_a->next)
 	{
 		if (p->buffer_a->next)
 		{
-			if (equals(p->buffer_a->str, "ra\n") && equals(p->buffer_a->next->str, "rra\n"))
+			if ((equals(p->buffer_a->str, "rrb\n")
+				&& equals(p->buffer_a->next->str, "rb\n"))
+				|| (equals(p->buffer_a->str, "rb\n")
+				&& equals(p->buffer_a->next->str, "rrb\n")))
 			{
 				p->buffer_a->str = "";
 				p->buffer_a->next->str = "";
@@ -137,34 +142,20 @@ t_list	*merge_instruction(t_piles *p)
 		p->buffer_a = p->buffer_a->next;
 	}
 	p->buffer_a = tmp;
-	tmp = p->buffer_b;
-	while (p->buffer_b && p->buffer_b->next)
-	{
-		if (p->buffer_b->next)
-		{
-			if (equals(p->buffer_b->str, "rrb\n") && equals(p->buffer_b->next->str, "rb\n"))
-			{
-				p->buffer_b->str = "";
-				p->buffer_b->next->str = "";
-			}
-		}
-		p->buffer_b = p->buffer_b->next;
-	}
-	p->buffer_b = tmp;
-	tmp = p->buffer_b;
-	while (p->buffer_b && p->buffer_b->next)
-	{
-		if (p->buffer_b->next)
-		{
-			if (equals(p->buffer_b->str, "rb\n") && equals(p->buffer_b->next->str, "rrb\n"))
-			{
-				p->buffer_b->str = "";
-				p->buffer_b->next->str = "";
-			}
-		}
-		p->buffer_b = p->buffer_b->next;
-	}
-	p->buffer_b = tmp;
+}
+
+static t_list	*merge_matches(t_piles *p)
+{
+	t_list	*res;
+	t_list	*tmp;
+	int		dist_a;
+	int		dist_b;
+	char	*match_a;
+	char	*match_b;
+	
+	res = NULL;
+	dist_a = 0;
+	dist_b = 0;
 	while (p->buffer_a && p->buffer_b)
 	{
 		match_a = get_match(p->buffer_a->str);
@@ -200,6 +191,19 @@ t_list	*merge_instruction(t_piles *p)
 			}
 		}
 	}
+
+	return (res);
+}
+
+t_list	*merge_instruction(t_piles *p)
+{
+	t_list	*tmp;
+	t_list	*res;
+
+	tmp = NULL;
+	remove_neutre_a(p);
+	remove_neutre_b(p);
+	res = merge_matches(p); // protect
 	while (p->buffer_a)
 	{
 		tmp = ft_lst_new(p->buffer_a->str);
