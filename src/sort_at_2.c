@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 14:22:10 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 18:38:02 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:25:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	sort_at_2(t_piles *p, t_stack **root)
 {
-
 	if (*root == (*root)->next)
 		return ;
 	if (root == p->pa && (*root)->value > (*root)->next->value)
@@ -30,5 +29,5 @@ void	sort_at_2(t_piles *p, t_stack **root)
 
 //	top-bot
 //		a		|	b
-// 21	swap	|	ok
-// 12	ok		|	swap
+// 21	swap	|	pa pa
+// 12	ok		|	swap pa pa

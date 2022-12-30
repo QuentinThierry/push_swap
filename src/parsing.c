@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:17:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/14 02:12:55 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:24:25 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_stack	*list_from_str(char *string)
 
 static void	free_split(char **args)
 {
-	size_t		i;
+	size_t	i;
 
 	if (!args)
 		return ;

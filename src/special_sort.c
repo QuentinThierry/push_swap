@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:54:48 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 17:36:20 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:30:51 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ void	special_sort_3(t_piles *p, t_stack **root)
 		on_pile = 'a';
 	else
 		on_pile = 'b';
-
-	// flush_instruction(p);
 	order = find_order(root);
 	if (equals(order, "123") || equals(order, "321"))
 		sort_123_321(p, order, on_pile);
@@ -110,7 +108,6 @@ void	special_sort_3(t_piles *p, t_stack **root)
 		get_instruction("pa", p, 1);
 	}
 }
-
 
 //	top-bot
 

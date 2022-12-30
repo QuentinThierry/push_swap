@@ -6,23 +6,14 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 18:56:21 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:29:34 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
- 
-// static void	print_all(t_piles *p)
-// {
-// 	printf("---------a---------\n");
-// 	print_stack(p->pa);
-// 	printf("---------b---------\n");
-// 	print_stack(p->pb);
-// 	printf("-------------------\n");
-// }
 
 // find the position of the last greatest(a)/lowest(b) in stack
-int	find_pos_of_last(t_piles *p,t_stack **src, int pivot_value, int size)
+int	find_pos_of_last(t_piles *p, t_stack **src, int pivot_value, int size)
 {
 	int		i;
 	int		j;
@@ -33,8 +24,8 @@ int	find_pos_of_last(t_piles *p,t_stack **src, int pivot_value, int size)
 	j = 0;
 	while (it != NULL && i < size)
 	{
-		if ((it->value < pivot_value && p->pa == src) ||
-			(it->value >= pivot_value && p->pb == src))
+		if ((it->value < pivot_value && p->pa == src)
+			|| (it->value >= pivot_value && p->pb == src))
 			j = 0;
 		else
 			j++;
@@ -123,29 +114,6 @@ int	split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *
 	return (size_a);
 }
 
-// static void	print_n_stack(t_stack **root, int n)
-// {
-// 	t_stack	*it;
-// 	int		i;
-
-// 	it = *root;
-// 	if (!it)
-// 	{
-// 		printf("EMPTY\n");
-// 		return ;
-// 	}
-// 	i = 0;
-// 	printf("n_stack : \n");
-// 	while (i < n)
-// 	{
-// 		printf("%d\n", it->value);
-// 		it = it->next;
-// 		if (it == *root)
-// 			break ;
-// 		i++;
-// 	}
-// }
-
 void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 {
 	t_stack	*pivot;
@@ -154,7 +122,7 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 
 	if (root == p->pa && is_sorted(root, 0))
 		return ;
-	if (root == p->pb && is_sorted(root, 1))	
+	if (root == p->pb && is_sorted(root, 1))
 	{
 		while (nb_elem--)
 			get_instruction("pa", p, 1);

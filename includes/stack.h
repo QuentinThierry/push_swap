@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 18:55:32 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:27:06 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ size_t	ft_strlen(const char *s);
 int		has_duplicated_elem(char **string);
 
 //utils2
-char	*mini_join(char *str, char letter);
 void	get_double_instruction(char *str1, char *str2, t_piles *p, int show);
 void	int_swap(int *a, int *b);
 

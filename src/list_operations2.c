@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:48 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 16:23:43 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:24:02 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,6 @@ void	free_stack(t_stack	*root)
 		free(tmp);
 	}
 	free(last);
-}
-
-void	print_stack(t_stack **root)
-{
-	t_stack	*it;
-
-	it = *root;
-	if (!it)
-	{
-		printf("EMPTY\n");
-		return ;
-	}
-	while (1)
-	{
-		printf("%d\n", it->value);
-		it = it->next;
-		if (it == *root)
-			break ;
-	}
 }
 
 int	list_count(t_stack **root)

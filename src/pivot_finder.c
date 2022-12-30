@@ -6,13 +6,13 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 16:38:11 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:31:19 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
 
-static int partition(int *tab, int left, int right)
+static int	partition(int *tab, int left, int right)
 {
 	int	pivot;
 	int	i;
@@ -31,7 +31,6 @@ static int partition(int *tab, int left, int right)
 		j++;
 	}
 	int_swap(&tab[i + 1], &tab[right]);
-
 	return (i + 1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 16:56:42 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:30:04 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,9 +182,6 @@ t_list	*merge_instruction(t_piles *p)
 		{
 			dist_a = distance_to_match(p->buffer_b, match_a);
 			dist_b = distance_to_match(p->buffer_a, match_b);
-			// printf("match a : %s\n", match_a);
-			// printf("match b : %s\n", match_b);
-			// printf("test : %s(%d)/%s(%d)\n", p->buffer_b->str, dist_a, p->buffer_a->str, dist_b);
 			if (dist_a > dist_b)
 			{
 				tmp = ft_lst_new(p->buffer_a->str);
@@ -261,16 +258,11 @@ void	add_instruction(t_piles *p, char *instruc)
 
 void	send_instruction(t_piles *p, char *str)
 {
-
-	// write (1, str, ft_strlen(str));
-	// return ;
 	if (equals(str, "pa\n") || equals(str, "pb\n"))
 	{
 		flush_instruction(p);
-		// write(1, "----", 4);
 		write(1, str, ft_strlen(str));
 		return ;
 	}
-	// write(1, "\\\n", 2);
 	add_instruction(p, str);
 }

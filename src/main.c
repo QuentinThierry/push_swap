@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 15:24:25 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 18:28:33 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,25 @@
 // 	printf("-------------------\n");
 // }
 
+// void	print_stack(t_stack **root)
+// {
+// 	t_stack	*it;
+
+// 	it = *root;
+// 	if (!it)
+// 	{
+// 		printf("EMPTY\n");
+// 		return ;
+// 	}
+// 	while (1)
+// 	{
+// 		printf("%d\n", it->value);
+// 		it = it->next;
+// 		if (it == *root)
+// 			break ;
+// 	}
+// }
+
 int	main(int argc, char const **argv)
 {
 	t_piles	p;
@@ -33,9 +52,7 @@ int	main(int argc, char const **argv)
 	rec_algo(&p, p.pa, p.pa_size);
 	if (!*p.pa)
 		return (0);
-	// printf("final flush\n");
 	flush_instruction(&p);
-	// print_all(&p);
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);
