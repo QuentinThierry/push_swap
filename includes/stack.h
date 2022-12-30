@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 16:34:45 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/29 18:55:32 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_stack	*parsing_mult(int argc, char **argv);
 void	get_instruction(char *str, t_piles *p, int show);
 
 //checker
-int		is_sorted(t_stack **root);
+int		is_sorted(t_stack **root, int is_descending);
 
 // utils
 int		equals(char	*s1, char *s2);

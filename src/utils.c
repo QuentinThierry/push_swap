@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/14 02:13:36 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:39:42 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	equals(char	*s1, char *s2)
 	size_t	i;
 
 	i = 0;
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (0);
 	while (s1[i] || s2[i])
 	{
 		if (s1[i] != s2[i])

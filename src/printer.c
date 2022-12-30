@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/29 18:37:59 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:56:42 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	distance_to_match(t_list *list, char *to_match)
 		list = list->next;
 		dist++;
 	}
-	return (dist);
+	return (__INT_MAX__);
 }
 
 char	*get_merge(char *str)
@@ -182,6 +182,9 @@ t_list	*merge_instruction(t_piles *p)
 		{
 			dist_a = distance_to_match(p->buffer_b, match_a);
 			dist_b = distance_to_match(p->buffer_a, match_b);
+			// printf("match a : %s\n", match_a);
+			// printf("match b : %s\n", match_b);
+			// printf("test : %s(%d)/%s(%d)\n", p->buffer_b->str, dist_a, p->buffer_a->str, dist_b);
 			if (dist_a > dist_b)
 			{
 				tmp = ft_lst_new(p->buffer_a->str);
@@ -216,7 +219,6 @@ t_list	*merge_instruction(t_piles *p)
 		ft_lstadd_back(&res, tmp);
 		p->buffer_b = p->buffer_b->next;
 	}
-	
 	return (res);
 }
 
