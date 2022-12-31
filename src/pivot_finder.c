@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 17:47:16 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:31:19 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/31 17:59:52 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_stack	*find_pivot(t_stack **root, int size, int is_first)
 		i++;
 	}
 	quick_sort(to_sort, 0, size - 1);
-	position = size / 2;
+	position = size / 2 + (size % 2);
 	if (is_first)
 		position = size / 4;
 	it = find_value(root, to_sort[position]);

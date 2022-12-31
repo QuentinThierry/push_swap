@@ -6,97 +6,11 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 20:15:43 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:20:58 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
-
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	if (*lst)
-		ft_lstlast(*lst)->next = new;
-	else
-		*lst = new;
-}
-
-t_list	*ft_lst_new(char *str)
-{
-	t_list	*res;
-
-	res = malloc(sizeof(t_list));
-	if (!res)
-		return (NULL);
-	res->next = NULL;
-	res->str = str;
-	return (res);
-}
-
-char	*get_match(char *str)
-{
-	if (equals(str, "ra\n"))
-		return ("rb\n");
-	if (equals(str, "rb\n"))
-		return ("ra\n");
-	if (equals(str, "rra\n"))
-		return ("rrb\n");
-	if (equals(str, "rrb\n"))
-		return ("rra\n");
-	if (equals(str, "sa\n"))
-		return ("sb\n");
-	if (equals(str, "sb\n"))
-		return ("sa\n");
-	return ("");
-}
-
-void	free_tlist(t_list **lst)
-{
-	t_list	*cpy;
-
-	if (!lst)
-		return ;
-	while (*lst)
-	{
-		cpy = *lst;
-		*lst = (*lst)->next;
-		free(cpy);
-	}
-}
-
-int	distance_to_match(t_list *list, char *to_match)
-{
-	int	dist;
-
-	dist = 0;
-	while (list)
-	{
-		if (equals(list->str, to_match))
-			return (dist);
-		list = list->next;
-		dist++;
-	}
-	return (__INT_MAX__);
-}
-
-char	*get_merge(char *str)
-{
-	if (equals(str, "ra\n") || equals(str, "rb\n"))
-		return ("rr\n");
-	if (equals(str, "rra\n") || equals(str, "rrb\n"))
-		return ("rrr\n");
-	if (equals(str, "sa\n") || equals(str, "sb\n"))
-		return ("ss\n");
-	return (NULL);
-}
 
 static void	remove_neutre_a(t_piles *p)
 {
@@ -108,9 +22,9 @@ static void	remove_neutre_a(t_piles *p)
 		if (p->buffer_a->next)
 		{
 			if ((equals(p->buffer_a->str, "rra\n")
-				&& equals(p->buffer_a->next->str, "ra\n"))
+					&& equals(p->buffer_a->next->str, "ra\n"))
 				|| (equals(p->buffer_a->str, "ra\n")
-				&& equals(p->buffer_a->next->str, "rra\n")))
+					&& equals(p->buffer_a->next->str, "rra\n")))
 			{
 				p->buffer_a->str = "";
 				p->buffer_a->next->str = "";
@@ -131,9 +45,9 @@ static void	remove_neutre_b(t_piles *p)
 		if (p->buffer_a->next)
 		{
 			if ((equals(p->buffer_a->str, "rrb\n")
-				&& equals(p->buffer_a->next->str, "rb\n"))
+					&& equals(p->buffer_a->next->str, "rb\n"))
 				|| (equals(p->buffer_a->str, "rb\n")
-				&& equals(p->buffer_a->next->str, "rrb\n")))
+					&& equals(p->buffer_a->next->str, "rrb\n")))
 			{
 				p->buffer_a->str = "";
 				p->buffer_a->next->str = "";
@@ -144,66 +58,14 @@ static void	remove_neutre_b(t_piles *p)
 	p->buffer_a = tmp;
 }
 
-static t_list	*merge_matches(t_piles *p)
-{
-	t_list	*res;
-	t_list	*tmp;
-	int		dist_a;
-	int		dist_b;
-	char	*match_a;
-	char	*match_b;
-	
-	res = NULL;
-	dist_a = 0;
-	dist_b = 0;
-	while (p->buffer_a && p->buffer_b)
-	{
-		match_a = get_match(p->buffer_a->str);
-		match_b = get_match(p->buffer_b->str);
-		if (equals(match_a, p->buffer_b->str))
-		{
-			tmp = ft_lst_new(get_merge(match_a));
-			if (!tmp)
-				return (free_tlist(&res), NULL);
-			ft_lstadd_back(&res, tmp);
-			p->buffer_a = p->buffer_a->next;
-			p->buffer_b = p->buffer_b->next;
-		}
-		else
-		{
-			dist_a = distance_to_match(p->buffer_b, match_a);
-			dist_b = distance_to_match(p->buffer_a, match_b);
-			if (dist_a > dist_b)
-			{
-				tmp = ft_lst_new(p->buffer_a->str);
-				if (!tmp)
-					return (free_tlist(&res), NULL);
-				ft_lstadd_back(&res, tmp);
-				p->buffer_a = p->buffer_a->next;
-			}
-			else
-			{
-				tmp = ft_lst_new(p->buffer_b->str);
-				if (!tmp)
-					return (free_tlist(&res), NULL);
-				ft_lstadd_back(&res, tmp);
-				p->buffer_b = p->buffer_b->next;
-			}
-		}
-	}
-
-	return (res);
-}
-
 t_list	*merge_instruction(t_piles *p)
 {
 	t_list	*tmp;
 	t_list	*res;
 
-	tmp = NULL;
 	remove_neutre_a(p);
 	remove_neutre_b(p);
-	res = merge_matches(p); // protect
+	res = merge_matches(p);
 	while (p->buffer_a)
 	{
 		tmp = ft_lst_new(p->buffer_a->str);
@@ -243,21 +105,6 @@ void	flush_instruction(t_piles *p)
 	free_tlist(&cpy_a);
 	p->buffer_a = NULL;
 	p->buffer_b = NULL;
-}
-
-void	add_instruction(t_piles *p, char *instruc)
-{
-	char	on_pile;
-	t_list	*tmp;
-
-	tmp = ft_lst_new(instruc);
-	if (!tmp)
-		return ;
-	on_pile = instruc[ft_strlen(instruc) - 2];
-	if (on_pile == 'a')
-		ft_lstadd_back(&p->buffer_a, tmp);
-	else
-		ft_lstadd_back(&p->buffer_b, tmp);
 }
 
 void	send_instruction(t_piles *p, char *str)

@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:09:01 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:29:34 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:33:37 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	rec_algo(t_piles *p, t_stack **root, int nb_elem)
 		else
 		{
 			if (list_count(root) == 3)
-				sort_at_3(p, root);
+				special_sort_3(p, root);
 			else
 				nb_elem = sort_at_3(p, root);
 		}

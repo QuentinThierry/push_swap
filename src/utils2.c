@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 18:09:06 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:26:57 by qthierry         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:22:01 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,15 @@ void	int_swap(int *a, int *b)
 	tmp = *a;
 	*a = *b;
 	*b = tmp;
+}
+
+char	*get_merge(char *str)
+{
+	if (equals(str, "ra\n") || equals(str, "rb\n"))
+		return ("rr\n");
+	if (equals(str, "rra\n") || equals(str, "rrb\n"))
+		return ("rrr\n");
+	if (equals(str, "sa\n") || equals(str, "sb\n"))
+		return ("ss\n");
+	return (NULL);
 }
