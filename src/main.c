@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/03 18:04:04 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/03 20:03:51 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char const **argv)
 		write(1, tmp->str, ft_strlen(tmp->str));
 		tmp = tmp->next;
 	}
-	free_tlist(&tmp);
+	free_tlist(&p.instruc);
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);
