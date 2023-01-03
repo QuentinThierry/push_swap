@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/31 18:21:46 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/03 03:00:27 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,15 @@ void	int_swap(int *a, int *b);
 char	*get_merge(char *str);
 
 // algo_operations.c
-int		split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size, int *size_b);
+int		find_pos_of_last(t_piles *p, t_stack **src, int pivot_value, int size);
+int		split_stack_pivot(t_piles *p, t_stack **src, t_stack *pivot, int size);
 void	rec_algo(t_piles *p, t_stack **stack, int nb_elem);
+
+// split_on_a.c
+int		split_on_a(t_piles *p, t_stack **root, t_stack *pivot, int size);
+
+// split_on_b.c
+int		split_on_b(t_piles *p, t_stack **root, t_stack *pivot, int size);
 
 // printers.c
 void	send_instruction(t_piles *p, char *str);

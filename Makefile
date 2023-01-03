@@ -1,6 +1,6 @@
 NAME = push_swap
 NAMEC = checker
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -g3 #-Werror
 DEPS = $(INCLUDES)stack.h $(INCLUDES)get_next_line.h Makefile
 INCLUDES = includes/
 SRC_DIR = src/
@@ -21,6 +21,8 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	get_next_line_utils.c \
 	pivot_finder.c \
 	algo_operations.c \
+	split_on_a.c \
+	split_on_b.c \
 	sort_at_3.c \
 	sort_at_2.c \
 	printer.c \
