@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:28:33 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:04:04 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,25 @@
 int	main(int argc, char const **argv)
 {
 	t_piles	p;
+	t_list	*tmp;
 
 	init_stack(argc, (char **)argv, &p);
 	p.pa_size = list_count(p.pa);
-	p.buffer = NULL;
+	p.instruc = NULL;
 	p.buffer_a = NULL;
 	p.buffer_b = NULL;
 	rec_algo(&p, p.pa, p.pa_size);
 	if (!*p.pa)
 		return (0);
-	flush_instruction(&p);
+	append_instruction(&p);
+	final_merge(&p.instruc);
+	tmp = p.instruc;
+	while (tmp)
+	{
+		write(1, tmp->str, ft_strlen(tmp->str));
+		tmp = tmp->next;
+	}
+	free_tlist(&tmp);
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);

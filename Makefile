@@ -1,6 +1,6 @@
 NAME = push_swap
 NAMEC = checker
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -g3
 DEPS = $(INCLUDES)stack.h $(INCLUDES)get_next_line.h Makefile
 INCLUDES = includes/
 SRC_DIR = src/
@@ -29,6 +29,7 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	merge_instruction.c \
 	special_sort.c \
 	list_utils.c \
+	final_merge.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \

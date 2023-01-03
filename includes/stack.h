@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/03 03:00:27 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:27:19 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_piles
 {
 	t_stack	**pa;
 	t_stack	**pb;
-	char	*buffer;
 	int		pa_size;
 	int		pb_size;
+	t_list	*instruc;
 	t_list	*buffer_a;
 	t_list	*buffer_b;
 }	t_piles;
@@ -96,7 +96,7 @@ int		split_on_b(t_piles *p, t_stack **root, t_stack *pivot, int size);
 
 // printers.c
 void	send_instruction(t_piles *p, char *str);
-void	flush_instruction(t_piles *p);
+void	append_instruction(t_piles *p);
 
 //special_sort.c
 void	special_sort_3(t_piles *p, t_stack **root);
@@ -122,5 +122,8 @@ void	free_tlist(t_list **lst);
 // merge_instruction.c
 t_list	*merge_matches(t_piles *p);
 void	add_instruction(t_piles *p, char *instruc);
+
+// final_merge.c
+void	final_merge(t_list **instruc);
 
 #endif

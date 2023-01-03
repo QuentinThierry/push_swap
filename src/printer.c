@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 20:03:50 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/31 18:20:58 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:00:55 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_list	*merge_instruction(t_piles *p)
 	return (res);
 }
 
-void	flush_instruction(t_piles *p)
+void	append_instruction(t_piles *p)
 {
 	t_list	*cpy_a;
 	t_list	*cpy_b;
@@ -97,22 +97,22 @@ void	flush_instruction(t_piles *p)
 	free_tlist(&cpy_a);
 	free_tlist(&cpy_b);
 	cpy_a = to_print;
-	while (to_print)
-	{
-		write(1, to_print->str, ft_strlen(to_print->str));
-		to_print = to_print->next;
-	}
-	free_tlist(&cpy_a);
+	ft_lstadd_back(&p->instruc, to_print);
 	p->buffer_a = NULL;
 	p->buffer_b = NULL;
 }
 
 void	send_instruction(t_piles *p, char *str)
 {
+	t_list	*tmp;
+
 	if (equals(str, "pa\n") || equals(str, "pb\n"))
 	{
-		flush_instruction(p);
-		write(1, str, ft_strlen(str));
+		append_instruction(p);
+		tmp = ft_lst_new(str);
+		if (!tmp)
+			return ;
+		ft_lstadd_back(&p->instruc, tmp);
 		return ;
 	}
 	add_instruction(p, str);
