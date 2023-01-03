@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qthierry <qthierry@student.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:59:40 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:22:35 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/03 03:18:57 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char const **argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	print_all(&p);
 	free_stack(*p.pa);
 	free_stack(*p.pb);
 	free(p.pa);
