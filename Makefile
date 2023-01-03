@@ -26,9 +26,9 @@ SRC_P = $(addprefix $(SRC_DIR), \
 	sort_at_3.c \
 	sort_at_2.c \
 	printer.c \
+	merge_instruction.c \
 	special_sort.c \
 	list_utils.c \
-	merge_instruction.c \
 	main.c)
 
 SRC_C = $(addprefix $(SRC_DIR), \
@@ -36,13 +36,16 @@ SRC_C = $(addprefix $(SRC_DIR), \
 	internal_operations.c \
 	list_operations.c \
 	list_operations2.c \
+	list_utils.c \
 	parsing.c \
 	utils.c \
+	utils2.c \
 	checker.c \
 	parsing_instructions.c \
 	get_next_line.c \
 	get_next_line_utils.c \
 	printer.c \
+	merge_instruction.c \
 	checker_main.c)
 
 OBJ_P = $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRC_P))
