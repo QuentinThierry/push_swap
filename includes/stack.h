@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/03 17:27:19 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:50:18 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		is_sorted(t_stack **root, int is_descending);
 // utils.c
 int		equals(char	*s1, char *s2);
 int		ft_isdigit(int c);
-int		ft_atoi(const char *nptr);
+long	ft_atol(const char *nptr);
 size_t	ft_strlen(const char *s);
 int		has_duplicated_elem(char **string);
 

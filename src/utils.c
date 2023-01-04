@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 16:39:42 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:50:10 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	equals(char	*s1, char *s2)
 	return (1);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int	res;
-	int	sign;
+	long	res;
+	int		sign;
 
 	res = 0;
 	sign = 1;
@@ -42,13 +42,13 @@ int	ft_atoi(const char *nptr)
 		if (*nptr == '-')
 			sign = -1;
 		else if (*nptr != '+')
-			return (-2147483648);
+			return (2147483648);
 		nptr++;
 	}
 	while (ft_isdigit(*nptr))
 		res = res * 10 + *nptr++ - '0';
 	if (*nptr)
-		return (-2147483648);
+		return (2147483648);
 	return (res * sign);
 }
 

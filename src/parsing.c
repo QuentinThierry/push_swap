@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:17:19 by qthierry          #+#    #+#             */
-/*   Updated: 2022/12/30 18:24:25 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:03:56 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,13 @@
 
 static t_stack	*list_from_str(char *string)
 {
-	int		value;
-	int		i;
+	long	value;
 	t_stack	*tmp;
 
-	value = ft_atoi(string);
-	i = 0;
-	if (value == -2147483648)
-	{
-		if (string[i] != '-')
-			return (NULL);
-		i++;
-		while (string[i] == '0')
-			i++;
-		if (!equals(string + i, "2147483648"))
-			return (NULL);
-	}
+	value = ft_atol(string);
+	if (value >= 2147483648)
+		return (NULL);
+	value = (int)value;
 	tmp = list_new(value);
 	return (tmp);
 }
