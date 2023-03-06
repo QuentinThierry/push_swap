@@ -6,39 +6,11 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:09:14 by qthierry          #+#    #+#             */
-/*   Updated: 2023/03/06 18:29:07 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:38:02 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/stack.h"
-
-// static void	print_all(t_piles *p)
-// {
-// 	printf("---------a---------\n");
-// 	print_stack(p->pa);
-// 	printf("---------b---------\n");
-// 	print_stack(p->pb);
-// 	printf("-------------------\n");
-// }
-
-// void	print_stack(t_stack **root)
-// {
-// 	t_stack	*it;
-
-// 	it = *root;
-// 	if (!it)
-// 	{
-// 		printf("EMPTY\n");
-// 		return ;
-// 	}
-// 	while (1)
-// 	{
-// 		printf("%d\n", it->value);
-// 		it = it->next;
-// 		if (it == *root)
-// 			break ;
-// 	}
-// }
 
 int	main(int argc, char const **argv)
 {
