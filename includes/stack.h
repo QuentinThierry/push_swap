@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:11:47 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/04 15:50:18 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:37:50 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ int		is_sorted(t_stack **root, int is_descending);
 // utils.c
 int		equals(char	*s1, char *s2);
 int		ft_isdigit(int c);
-long	ft_atol(const char *nptr);
+int		ft_atoi_sec(const char *nptr, int *error);
 size_t	ft_strlen(const char *s);
-int		has_duplicated_elem(char **string);
+int		has_duplicated_elem(t_stack *stack);
 
 //utils2.c
 void	get_double_instruction(char *str1, char *str2, t_piles *p, int show);

@@ -1,6 +1,6 @@
 NAME = push_swap
 NAMEC = checker
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 DEPS = $(INCLUDES)stack.h $(INCLUDES)get_next_line.h Makefile
 INCLUDES = includes/
 SRC_DIR = src/

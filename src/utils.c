@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/04 15:50:10 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:37:44 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int	equals(char	*s1, char *s2)
 	return (1);
 }
 
-long	ft_atol(const char *nptr)
+int	ft_atoi_sec(const char *nptr, int *error)
 {
 	long	res;
 	int		sign;
+	size_t	i;
 
 	res = 0;
 	sign = 1;
@@ -42,15 +43,48 @@ long	ft_atol(const char *nptr)
 		if (*nptr == '-')
 			sign = -1;
 		else if (*nptr != '+')
-			return (2147483648);
+			return (*error = 1, -1);
 		nptr++;
 	}
-	while (ft_isdigit(*nptr))
+	if (!*nptr)
+		return (*error = 1, -1);
+	i = 0;
+	while (*nptr == '0')
+		nptr++;
+	while (ft_isdigit(*nptr) && ++i)
 		res = res * 10 + *nptr++ - '0';
-	if (*nptr)
-		return (2147483648);
-	return (res * sign);
+	return (*error = ((i > 10) || (res * sign > 2147483647) || 
+			(res *sign  < -2147483648) || (*nptr)), res * sign);
 }
+
+// int	ft_atoi_sec(const char *nptr, int *error)
+// {
+// 	long	res;
+// 	int		sign;
+// 	size_t	i;
+
+// 	res = 0;
+// 	sign = 1;
+// 	*error = 1;
+// 	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
+// 		nptr++;
+// 	if (*nptr == '-' && nptr++)
+// 		sign = -1;
+// 	else if (*nptr == '+')
+// 		nptr++;
+// 	i = 0;
+// 	while (*nptr == '0' && i++)
+// 		nptr++;
+// 	while (ft_isdigit(*nptr) && ++i)
+// 	{
+// 		res = res * 10 + *nptr++ - '0';
+// 		error = 0;
+// 	}
+// 	if (*nptr)
+// 		return (*error = 1, -1);
+// 	printf("i : %ld\n", i);
+// 	return (*error += (i > 10), res * sign);
+// }
 
 int	ft_isdigit(int c)
 {
@@ -67,25 +101,22 @@ size_t	ft_strlen(const char *s)
 	return (s - cpy);
 }
 
-int	has_duplicated_elem(char **string)
+int	has_duplicated_elem(t_stack *head)
 {
-	int	i;
-	int	j;
+	t_stack *iter;
+	t_stack *iter2;
 
-	i = 0;
-	while (string[i])
+	iter = head->next;
+	while (iter != head)
 	{
-		j = i + 1;
-		while (string[j])
+		iter2 = iter->prev;
+		while (iter2 != head->prev)
 		{
-			if (equals(string[j], string[i]))
-			{
-				write(1, "Error\n", 6);
+			if (iter2->value == iter->value)
 				return (1);
-			}
-			j++;
+			iter2 = iter2->prev;
 		}
-		i++;
+		iter = iter->next;
 	}
 	return (0);
 }

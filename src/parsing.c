@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:17:19 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/04 16:03:56 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/02 22:57:58 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ static t_stack	*list_from_str(char *string)
 {
 	long	value;
 	t_stack	*tmp;
+	int		error;
 
-	value = ft_atol(string);
-	if (value >= 2147483648)
+	error = 0;
+	value = ft_atoi_sec(string, &error);
+	if (error)
 		return (NULL);
 	value = (int)value;
 	tmp = list_new(value);
@@ -51,10 +53,10 @@ t_stack	*parsing_one(const char *string)
 	root = NULL;
 	stack = NULL;
 	args = ft_split(string, ' ');
-	if (!args || has_duplicated_elem(args))
-		return (free_split(args), NULL);
-	i = 0;
-	while (args[i])
+	if (!args)
+		return (NULL);
+	i = -1;
+	while (args[++i])
 	{
 		tmp = list_from_str(args[i]);
 		if (!tmp)
@@ -63,10 +65,10 @@ t_stack	*parsing_one(const char *string)
 		if (root == NULL)
 			root = stack;
 		stack = stack->next;
-		i++;
 	}
-	free_split(args);
-	return (root);
+	if (has_duplicated_elem(root))
+		return (free_split(args), free_stack(root), NULL);
+	return (free_split(args), root);
 }
 
 t_stack	*parsing_mult(int argc, char **argv)
@@ -78,8 +80,6 @@ t_stack	*parsing_mult(int argc, char **argv)
 
 	root = NULL;
 	stack = NULL;
-	if (has_duplicated_elem(argv))
-		return (NULL);
 	i = 1;
 	while (i < argc)
 	{
@@ -92,5 +92,7 @@ t_stack	*parsing_mult(int argc, char **argv)
 		stack = stack->next;
 		i++;
 	}
+	if (has_duplicated_elem(root))
+		return (free_stack(root), NULL);
 	return (root);
 }

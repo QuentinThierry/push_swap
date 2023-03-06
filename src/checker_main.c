@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:59:40 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/03 20:01:56 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:00:53 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static t_list	*get_all_instructions(void)
 		str = get_as_static(gnl_res);
 		free(gnl_res);
 		if (!str)
-			return (write(1, "Error\n", 6), NULL);
+			return (write(2, "Error\n", 6), NULL);
 		tmp = ft_lst_new(str);
 		if (!tmp)
 			return (free_tlist(&res), NULL);

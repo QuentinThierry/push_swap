@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 00:52:48 by qthierry          #+#    #+#             */
-/*   Updated: 2023/01/04 15:44:32 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/02 23:03:16 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_stack(int argc, char **argv, t_piles *p)
 		*p->pa = parsing_mult(argc, argv);
 	if (!*p->pa)
 	{
-		write (1, "Error\n", 6);
+		write (2, "Error\n", 6);
 		return (free(p->pa), free(p->pb), exit(EXIT_FAILURE));
 	}
 	*p->pb = NULL;
