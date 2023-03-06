@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2023/03/02 23:37:44 by qthierry         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:33:54 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,38 +53,9 @@ int	ft_atoi_sec(const char *nptr, int *error)
 		nptr++;
 	while (ft_isdigit(*nptr) && ++i)
 		res = res * 10 + *nptr++ - '0';
-	return (*error = ((i > 10) || (res * sign > 2147483647) || 
-			(res *sign  < -2147483648) || (*nptr)), res * sign);
+	return (*error = ((i > 10) || (res * sign > 2147483647)
+			|| (res * sign < -2147483648) || (*nptr)), res * sign);
 }
-
-// int	ft_atoi_sec(const char *nptr, int *error)
-// {
-// 	long	res;
-// 	int		sign;
-// 	size_t	i;
-
-// 	res = 0;
-// 	sign = 1;
-// 	*error = 1;
-// 	while (*nptr == ' ' || (*nptr >= 9 && *nptr <= 13))
-// 		nptr++;
-// 	if (*nptr == '-' && nptr++)
-// 		sign = -1;
-// 	else if (*nptr == '+')
-// 		nptr++;
-// 	i = 0;
-// 	while (*nptr == '0' && i++)
-// 		nptr++;
-// 	while (ft_isdigit(*nptr) && ++i)
-// 	{
-// 		res = res * 10 + *nptr++ - '0';
-// 		error = 0;
-// 	}
-// 	if (*nptr)
-// 		return (*error = 1, -1);
-// 	printf("i : %ld\n", i);
-// 	return (*error += (i > 10), res * sign);
-// }
 
 int	ft_isdigit(int c)
 {
@@ -103,8 +74,8 @@ size_t	ft_strlen(const char *s)
 
 int	has_duplicated_elem(t_stack *head)
 {
-	t_stack *iter;
-	t_stack *iter2;
+	t_stack	*iter;
+	t_stack	*iter2;
 
 	iter = head->next;
 	while (iter != head)
