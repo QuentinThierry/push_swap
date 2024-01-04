@@ -6,7 +6,7 @@
 /*   By: qthierry <qthierry@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 22:29:27 by qthierry          #+#    #+#             */
-/*   Updated: 2023/03/06 18:33:54 by qthierry         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:54:56 by qthierry         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	has_duplicated_elem(t_stack *head)
 	t_stack	*iter;
 	t_stack	*iter2;
 
+	if (!head)
+		return (1);
 	iter = head->next;
 	while (iter != head)
 	{
